@@ -1,0 +1,34 @@
+.pagination {
+    list-style: none;
+    margin-top: 2rem;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    column-gap: 1px;
+    flex-wrap: wrap;
+  }
+  
+  .pagination button {
+      height: 40px;
+      font-family: inherit;
+      font-weight: 600;
+      font-size: 16px;
+      margin: 8px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      background: transparent;
+      color: #000000;
+      border-color: #eee;
+      padding: 1px 12px;
+      color: #101010; 
+  }
+  
+  .pagination button.active {
+      font-weight: 900;
+      background: #bdc2bf;
+      color: #101010;
+      text-align: center;
+  }
+  
+  

@@ -1,0 +1,41 @@
+h2.ebs-modal__title {
+    font-size: 1.5em;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .modal_user .ebs-modal {
+    margin-top: 2.5rem;
+  }
+  
+  .modal_user_update .ebs-modal {
+    margin-top: 8rem;
+  }
+  
+  .user_modal .ebs-form__field__label { 
+    font-weight: 600;
+    font-size: 14px;
+  }
+  
+  .ebs-form__field__label {
+    display: flex;
+    font-size: 0.75rem;
+    font-weight: 5700;
+    color: #494f7d;
+    height: 100%;
+  }
+  
+  .user_modal .ebs-button--medium .ebs-button{
+    font-weight: 600;
+    font-size: 0.900rem;
+  }
+  
+  .user_modal .ebs-checkbox__wrapper{
+    font-weight: 600;
+    font-size: 0.900rem;
+  }
+  
+  .user_modal .ebs-form__item:not(:last-child){
+    margin-bottom: 0.500rem;
+  }

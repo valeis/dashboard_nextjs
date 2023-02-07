@@ -1,0 +1,78 @@
+.input_login {
+    position: relative;
+    margin: 12rem auto;
+    padding: 1rem;
+    width: 450px;
+  }
+  
+  .input_login .ebs-form__field__label {
+    font-weight: 600;
+    font-size: 14px;
+  }
+  
+  .input_login .ebs-button__wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    margin: 0 10px;
+  }
+  
+  .input_login .ebs-button {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+  
+  }
+  
+  .input_login .ebs-button--medium .ebs-button {
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
+  
+  .input_login .ebs-checkbox__wrapper {
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
+  
+  .input_login .ebs-form__item:not(:last-child){
+    margin-bottom: 0.500rem;
+  }
+  
+  .input_login a:link{
+    text-decoration: none;
+  }
+  
+  .formHeader_login {
+    background-color: #dae0f2;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    margin-bottom: 1.2em;
+  }
+  
+  .formHeader_login h1 {
+    font-size: 30px;
+    text-align: center;
+    color: #000;
+    padding: 10px 0;
+  }
+  
+  .span_login {
+    display: flex;
+    justify-content: center;
+    color: #c3423f;
+    font-style: italic;
+    font-weight: 500;
+  }
+  @media only screen and (max-width: 850px) {
+    .input_login {
+      width: 50%;
+    }
+  }
+  
+  @media only screen and (max-width: 400px) {
+    .input_login {
+      width: 65%;
+    }
+  }
+  
