@@ -4,12 +4,14 @@ import {
     Layout,
     Sidebar,
   } from "ebs-design";
-  import { ReactNode, useContext, useEffect, useState } from "react";
+  import { ReactNode, useContext, useEffect, useReducer, useState } from "react";
   import { useLocation, useNavigate } from "react-router-dom";
   import * as BiIcons from "react-icons/bi";
   
   import AuthContext from "../../store/auth-context";
-  import './Layout.css'
+  
+  import './Layout'
+import { useRouter } from "next/router";
   
   type LayoutProps = {
     children: ReactNode;
@@ -36,8 +38,8 @@ import {
   const LayoutDashboard = ({ children }: LayoutProps) => {
   
     const authCtx = useContext(AuthContext);
-    const navigate = useNavigate();
-    const { pathname } = useLocation();
+    const router = useRouter();
+  
   
     const logoutHandler = () => {
       authCtx.logout();
@@ -46,9 +48,9 @@ import {
     const  [ activeTab, setActiveTab ] = useState(" ");
   
     useEffect(() => {
-      const firstPath = "/" + pathname.split("/").filter(i=>i)[0]
+      const firstPath = "/" + router.pathname.split("/").filter(i=>i)[0]
       setActiveTab(firstPath);
-    }, [pathname])
+    }, [router.pathname])
   
     return (
       <Layout>
@@ -65,7 +67,7 @@ import {
             {paths.map(({ pathName, ...rest }) => (
               <Sidebar.Item
                 key={pathName}
-                onClick={() => navigate(pathName)}
+                onClick={() => router.push(pathName)}
                 active={activeTab === pathName}
                 {...rest}
               />

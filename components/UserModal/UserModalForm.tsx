@@ -14,7 +14,7 @@ import {
   import usersRequest from "../../api/users";
   import { User } from "../../types/User";
   
-  import "./UserModalForm.css";
+  import "./UserModalForm";
   
   type UserModalProps = {
     userId?: string;

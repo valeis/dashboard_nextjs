@@ -1,0 +1,29 @@
+.table_header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    border-radius: 8px;
+  }
+  
+  .table_header p {
+    color: #000000;
+    font-weight: 600;
+  }
+  
+  .rc-table.ebs-table .rc-table-thead tr th.rc-table-cell:defined{
+    text-align: center;
+    font-size: 0.950rem;
+    font-weight: bold;
+  }
+  
+  .rc-table.ebs-table .rc-table-tbody tr.rc-table-row td.rc-table-cell:defined{
+    text-align: center;
+    align-items: center;
+    font-size: 0.900rem;
+  }
+  
+  .rc-table.ebs-table td:defined{
+    padding: 1rem 0.600rem;
+  }

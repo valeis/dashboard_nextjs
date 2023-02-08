@@ -1,175 +1,237 @@
 {
-    "users": [
-      {
-        "name": "Test",
-        "surname": "Test",
-        "email": "test@gmail.com",
-        "gender": "male",
-        "password": "test123",
-        "role": "Moderator",
-        "id": 4
-      },
-      {
-        "name": "Test23",
-        "surname": "Test23",
-        "email": "test@gmail.com",
-        "gender": "male",
-        "password": "test123",
-        "role": "Moderator",
-        "id": 5
-      },
-      {
-        "name": "test234",
-        "surname": "test234",
-        "email": "test@gmail.com",
-        "gender": "male",
-        "password": "test234",
-        "role": "Moderator",
-        "id": 6
-      },
-      {
-        "name": "skill",
-        "surname": "skill",
-        "email": "skill123@gmail.com",
-        "gender": "female",
-        "password": "skill123",
-        "role": "Moderator",
-        "id": 10
-      },
-      {
-        "name": "Pavel",
-        "surname": "Pavel",
-        "email": "pavel@gmail.com",
-        "gender": "male",
-        "password": "pavel123",
-        "role": "Moderator",
-        "id": 17
-      },
-      {
-        "name": "1234",
-        "surname": "1234",
-        "email": "1234",
-        "gender": "male",
-        "password": "1234",
-        "role": "Moderator",
-        "id": 24
-      },
-      {
-        "name": "admin",
-        "surname": "admin",
-        "email": "admin@gmail.com",
-        "gender": "male",
-        "password": "admin123",
-        "role": "Admin",
-        "id": 25
-      },
-      {
-        "name": "ionut",
-        "surname": "ionut",
-        "email": "ionut",
-        "gender": "male",
-        "password": "ionut123",
-        "role": "Moderator",
-        "id": 26
-      },
-      {
-        "name": "marin",
-        "surname": "marin",
-        "email": "marin@gmail.com",
-        "gender": "male",
-        "password": "marin123",
-        "role": "Moderator",
-        "id": 27
-      }
-    ],
-    "posts": [
-      {
-        "title": "Red and silver guppy",
-        "description": "Featured in: Editorial, Animals, Wallpapers \nBettas are my favorite subject to shoot these days. They are beautiful, intelligent and aggressive.\nPublished on October 5, 2018\n",
-        "image": "https://images.unsplash.com/photo-1538719501547-bc023056a8b6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=396&q=80",
-        "date": "2018-10-05",
-        "author": "admin",
-        "id": 4
-      },
-      {
-        "title": "A boat on the water",
-        "description": "Featured in Travel\nIseltwald is a pretty village on the shores of Lake Brienz.\nIseltwald, Switzerland\nPublished on November 29, 2022\nDJI, FC3411",
-        "image": "https://images.unsplash.com/photo-1669733040274-1e3c13e731db?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1171&q=80",
-        "date": "2022-06-30",
-        "author": "Petrache",
-        "id": 8
-      },
-      {
-        "title": "A night view of a lake",
-        "description": "Featured in Editorial, Nature, Travel\nLake Kawaguchi, 富士河口湖町 山梨県 日本\nPublished 5 days ago\nNIKON CORPORATION, NIKON D500\n",
-        "image": "https://images.unsplash.com/photo-1673794784636-2e69436d3eee?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1228&q=80",
-        "date": "2022-07-21",
-        "author": "Petrache",
-        "id": 9
-      },
-      {
-        "title": "Nature Imagee",
-        "description": "Featured in Editorial, Wallpapers, Travel\nCappadocia. Goreme, Nevsehir, Turkiye, November 2022.\nCappadocia, Turkey\nPublished on November 22, 2022\nSONY, ILCE-7M2",
-        "image": "https://images.unsplash.com/photo-1669111958756-13b1d5be9110?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80",
-        "date": "2021-06-22",
-        "author": "admin",
-        "id": 10
-      },
-      {
-        "title": "Guatemale",
-        "description": "Featured in Editorial\nLake Atitlán, Guatemala\nPublished on November 23, 2022\nPanasonic, DC-S5",
-        "image": "https://images.unsplash.com/photo-1669177154752-956fa722ca69?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80",
-        "date": "2022-09-20",
-        "author": "Marina",
-        "id": 11
-      },
-      {
-        "title": "A long exposure photo of a rock",
-        "description": "Featured in\nEditorial, Nature, Wallpapers\nBlack Sand Beach Reynisfjara, Iceland.\nPublished 9 days ago\nSONY, ILCE-7RM3\n",
-        "image": "https://images.unsplash.com/photo-1674580351112-42fdbbae9c86?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
-        "date": "2022-11-25",
-        "author": "admin",
-        "id": 15
-      },
-      {
-        "title": "A man standing on the side of the street",
-        "description": "Featured in Editorial\nPublished 2 days ago\nEpson, GT-X970\n",
-        "image": "https://images.unsplash.com/photo-1675522154319-666f8181678c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1147&q=80",
-        "date": "2023-02-04",
-        "author": "admin",
-        "id": 16
-      },
-      {
-        "title": "A view of a mountain range covered in clouds",
-        "description": "Featured in Editorial\nPublished 4 days ago\nCanon, EOS 6D Mark II",
-        "image": "https://images.unsplash.com/photo-1675339739656-55dd61d08570?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
-        "date": "2022-09-11",
-        "author": "admin",
-        "id": 17
-      },
-      {
-        "title": "A city street with a tall white building",
-        "description": "Featured in Editorial\nBla-bla-bla",
-        "image": "https://images.unsplash.com/photo-1675522034416-3477274244b5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80",
-        "date": "2021-11-07",
-        "author": "admin",
-        "id": 18
-      },
-      {
-        "title": "A person sitting on a cliff",
-        "description": "Featured in Nature, Travel, Wallpapers\nGuy is sitting on a cliff watching an ocean low tide\nPublished 13 days ago\nNORITSU KOKI, QSS-32_33",
-        "image": "https://images.unsplash.com/photo-1674592309639-39067f6a8111?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=876&q=80",
-        "date": "2020-03-18",
-        "author": "Mihai",
-        "id": 19
-      },
-      {
-        "title": "A mountain covered in snoww",
-        "description": "Featured in Editorial\ntop of the mountain with moody clouds\nComox Valley, BC, Canada\nCanon, EOS Rebel T7i",
-        "image": "https://images.unsplash.com/photo-1675719648634-ee7dfd9075f0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1887&q=80",
-        "date": "2007-02-12",
-        "author": "marin",
-        "id": 20
-      }
-    ]
-  }
+  "users": [
+    {
+      "name": "Test",
+      "surname": "Test",
+      "email": "test@gmail.com",
+      "gender": "male",
+      "password": "test123",
+      "role": "Moderator",
+      "id": 4
+    },
+    {
+      "name": "Test23",
+      "surname": "Test23",
+      "email": "test@gmail.com",
+      "gender": "male",
+      "password": "test123",
+      "role": "Moderator",
+      "id": 5
+    },
+    {
+      "name": "test234",
+      "surname": "test234",
+      "email": "test@gmail.com",
+      "gender": "male",
+      "password": "test234",
+      "role": "Moderator",
+      "id": 6
+    },
+    {
+      "name": "skill",
+      "surname": "skill",
+      "email": "skill123@gmail.com",
+      "gender": "female",
+      "password": "skill123",
+      "role": "Moderator",
+      "id": 10
+    },
+    {
+      "name": "Pavel",
+      "surname": "Pavel",
+      "email": "pavel@gmail.com",
+      "gender": "male",
+      "password": "pavel123",
+      "role": "Moderator",
+      "id": 17
+    },
+    {
+      "name": "1234",
+      "surname": "1234",
+      "email": "1234",
+      "gender": "male",
+      "password": "1234",
+      "role": "Moderator",
+      "id": 24
+    },
+    {
+      "name": "admin",
+      "surname": "admin",
+      "email": "admin@gmail.com",
+      "gender": "male",
+      "password": "admin123",
+      "role": "Admin",
+      "id": 25
+    },
+    {
+      "name": "ionut",
+      "surname": "ionut",
+      "email": "ionut",
+      "gender": "male",
+      "password": "ionut123",
+      "role": "Moderator",
+      "id": 26
+    },
+    {
+      "name": "marin",
+      "surname": "marin",
+      "email": "marin@gmail.com",
+      "gender": "male",
+      "password": "marin123",
+      "role": "Moderator",
+      "id": 27
+    },
+    {
+      "name": "Mihai",
+      "surname": "Mihai",
+      "email": "mihai@gmail.com",
+      "gender": "male",
+      "password": "mihai123",
+      "role": "Moderator",
+      "id": 28
+    },
+    {
+      "name": "Mihai2",
+      "surname": "Mihai",
+      "email": "mihai@gmail.com",
+      "gender": "male",
+      "password": "mihai123",
+      "role": "Moderator",
+      "id": 29
+    },
+    {
+      "name": "Ionut",
+      "surname": "Ionut2",
+      "email": "ionut@gmail.com",
+      "gender": "male",
+      "password": "ionut12345",
+      "role": "Moderator",
+      "id": 30
+    },
+    {
+      "name": "Petru",
+      "surname": "Petru",
+      "email": "petru@gmail.com",
+      "gender": "male",
+      "password": "petru123",
+      "role": "Moderator",
+      "id": 31
+    },
+    {
+      "name": "Kali",
+      "surname": "Kali",
+      "email": "kali@gmail.com",
+      "gender": "male",
+      "password": "kali123",
+      "role": "Moderator",
+      "id": 32
+    },
+    {
+      "name": "panda",
+      "surname": "panda",
+      "email": "panda@gmail.com",
+      "gender": "male",
+      "password": "panda123",
+      "role": "Moderator",
+      "id": 33
+    }
+  ],
+  "posts": [
+    {
+      "title": "Red and silver guppy",
+      "description": "Featured in: Editorial, Animals, Wallpapers \nBettas are my favorite subject to shoot these days. They are beautiful, intelligent and aggressive.\nPublished on October 5, 2018\n",
+      "image": "https://images.unsplash.com/photo-1538719501547-bc023056a8b6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=396&q=80",
+      "date": "2018-10-05",
+      "author": "admin",
+      "id": 4
+    },
+    {
+      "title": "A boat on the water",
+      "description": "Featured in Travel\nIseltwald is a pretty village on the shores of Lake Brienz.\nIseltwald, Switzerland\nPublished on November 29, 2022\nDJI, FC3411",
+      "image": "https://images.unsplash.com/photo-1669733040274-1e3c13e731db?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1171&q=80",
+      "date": "2022-06-30",
+      "author": "Petrache",
+      "id": 8
+    },
+    {
+      "title": "A night view of a lake",
+      "description": "Featured in Editorial, Nature, Travel\nLake Kawaguchi, 富士河口湖町 山梨県 日本\nPublished 5 days ago\nNIKON CORPORATION, NIKON D500\n",
+      "image": "https://images.unsplash.com/photo-1673794784636-2e69436d3eee?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1228&q=80",
+      "date": "2022-07-21",
+      "author": "Petrache",
+      "id": 9
+    },
+    {
+      "title": "Nature Imagee",
+      "description": "Featured in Editorial, Wallpapers, Travel\nCappadocia. Goreme, Nevsehir, Turkiye, November 2022.\nCappadocia, Turkey\nPublished on November 22, 2022\nSONY, ILCE-7M2",
+      "image": "https://images.unsplash.com/photo-1669111958756-13b1d5be9110?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80",
+      "date": "2021-06-22",
+      "author": "admin",
+      "id": 10
+    },
+    {
+      "title": "Guatemale",
+      "description": "Featured in Editorial\nLake Atitlán, Guatemala\nPublished on November 23, 2022\nPanasonic, DC-S5",
+      "image": "https://images.unsplash.com/photo-1669177154752-956fa722ca69?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80",
+      "date": "2022-09-20",
+      "author": "Marina",
+      "id": 11
+    },
+    {
+      "title": "A long exposure photo of a rock",
+      "description": "Featured in\nEditorial, Nature, Wallpapers\nBlack Sand Beach Reynisfjara, Iceland.\nPublished 9 days ago\nSONY, ILCE-7RM3\n",
+      "image": "https://images.unsplash.com/photo-1674580351112-42fdbbae9c86?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+      "date": "2022-11-25",
+      "author": "admin",
+      "id": 15
+    },
+    {
+      "title": "A man standing on the side of the street",
+      "description": "Featured in Editorial\nPublished 2 days ago\nEpson, GT-X970\n",
+      "image": "https://images.unsplash.com/photo-1675522154319-666f8181678c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1147&q=80",
+      "date": "2023-02-04",
+      "author": "admin",
+      "id": 16
+    },
+    {
+      "title": "A view of a mountain range covered in clouds",
+      "description": "Featured in Editorial\nPublished 4 days ago\nCanon, EOS 6D Mark II",
+      "image": "https://images.unsplash.com/photo-1675339739656-55dd61d08570?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+      "date": "2022-09-11",
+      "author": "admin",
+      "id": 17
+    },
+    {
+      "title": "A city street with a tall white building",
+      "description": "Featured in Editorial\nBla-bla-bla",
+      "image": "https://images.unsplash.com/photo-1675522034416-3477274244b5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80",
+      "date": "2021-11-07",
+      "author": "admin",
+      "id": 18
+    },
+    {
+      "title": "A person sitting on a cliff",
+      "description": "Featured in Nature, Travel, Wallpapers\nGuy is sitting on a cliff watching an ocean low tide\nPublished 13 days ago\nNORITSU KOKI, QSS-32_33",
+      "image": "https://images.unsplash.com/photo-1674592309639-39067f6a8111?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=876&q=80",
+      "date": "2020-03-18",
+      "author": "Mihai",
+      "id": 19
+    },
+    {
+      "title": "A mountain covered in snoww",
+      "description": "Featured in Editorial\ntop of the mountain with moody clouds\nComox Valley, BC, Canada\nCanon, EOS Rebel T7i",
+      "image": "https://images.unsplash.com/photo-1675719648634-ee7dfd9075f0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1887&q=80",
+      "date": "2007-02-12",
+      "author": "marin",
+      "id": 20
+    },
+    {
+      "title": "City",
+      "description": "City",
+      "image": "https://images.unsplash.com/photo-1674964145915-9f02ec883423?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+      "date": "1995-11-01",
+      "author": "admin",
+      "id": 21
+    }
+  ]
+}

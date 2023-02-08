@@ -1,0 +1,58 @@
+.ebs-card {
+  margin-bottom: 20px;
+  height: 495px;
+  border-radius: 15px !important;
+  max-width: 370px !important;
+}
+
+.ebs-card__header--bordered:defined {
+  border-bottom: 0px;
+}
+
+.ebs-card__body {
+  padding: 0rem !important;
+  background-color: #fff !important;
+}
+
+.ebs-card__header {
+  padding: 0.85rem 0.9375rem 0rem 0.9375rem !important;
+}
+.card-image {
+  display: block;
+  border-radius: 10px;
+  margin: 10px auto;
+  height: 250px;
+  width: 250px;
+}
+
+.ebs-button--prefix button.ebs-button:defined {
+  padding-left: 1rem;
+}
+
+.ebs-space__item:defined {
+  margin-right: 0px;
+}
+
+.ebs-card__footer {
+  border-top: 0px !important;
+}
+
+.card-text {
+  font-size: medium;
+  text-align: center;
+  padding: 2px 20px;
+  justify-content: center;
+}
+
+.card-description {
+  height: 70px;
+  font-size: medium;
+  text-align: center;
+  padding: 2px 20px;
+  justify-content: center;
+}
+
+.header {
+  font-size: 0.8rem;
+  font-weight: 500;
+}

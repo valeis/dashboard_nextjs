@@ -1,0 +1,29 @@
+.blog-date {
+    font-size: 0.8rem;
+    color: #a9a9a9;
+    font-weight: 500;
+  }
+  
+  .blog-wrap img {
+    display: flex;
+    align-items: center;
+    max-width: 50%;
+    margin: auto;
+    background-color: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  
+  .blog-desc {
+    margin-top: 1.5rem;
+    text-align: justify;
+    text-align: center;
+  }
+  
+  .author {
+    margin: 0;
+  }
+  
+  .blog-date {
+    margin: 0px 0px 3.5px 0px;
+  }
+  

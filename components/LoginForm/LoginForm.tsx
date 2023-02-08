@@ -1,18 +1,18 @@
 import React, {useContext, useState } from "react";
 import { Form, Input, Button, useForm } from "ebs-design";
-
+import { useRouter } from 'next/router'
+import Link from "next/link";
 
 import AuthContext from "@/store/auth-context";
 import Card from "../Card/Card";
 
 import './LoginForm'
-import Link from "next/link";
 
 const LoginForm = () => {
   const [form] = useForm();
   const authCtx = useContext(AuthContext);
-
   const [logged, setLogged] = useState(true);
+  const router = useRouter();
 
   return (
     <div>
@@ -28,8 +28,8 @@ const LoginForm = () => {
           }}
           onFinish={ (values) => {
             authCtx.login(values);
-            console.log(authCtx.isLoggedIn)
             setLogged(authCtx.isLoggedIn);
+            {logged && router.push('dashboard') }
           }}
           controlOptions={{
             col: {

@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import React, { ReactNode, useEffect, useState} from "react";
 import { UseMutateFunction, useMutation, useQuery} from "react-query";
 import usersRequest from "../api/users";
 import { User } from "../types/User";
@@ -10,7 +10,7 @@ type AuthProviderProps = {
 interface AuthContextType {
   isLoggedIn: boolean;
   currentUser: User;
-  login: UseMutateFunction<any, unknown, { email: string; password: string; }>
+  login: (body:{email: string, password: string}) => void
   logout: () => void;
   isLoading: boolean;
 }
@@ -24,15 +24,26 @@ export const AuthContext = React.createContext<AuthContextType>({
 });
 
 export const AuthContextProvider = ({ children }: AuthProviderProps) => {
+
+  const [ initialToken, setInitialToken ] = useState('');
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    setInitialToken(token!);
+  },[])
+
+  /* if (typeof window !== 'undefined'){
   const initialToken = localStorage.getItem("token");
-  
+  } */
+
   const { data, isLoading, refetch} = useQuery(["user",initialToken], () => usersRequest.getById(initialToken!), {enabled:!!initialToken});
 
   const userIsLoggedIn = !!data;
 
 
-  const mutation = useMutation(usersRequest.getAuth,{
+  const mutation = useMutation(usersRequest.getAuth, {
     onSuccess: (data) => {
+      console.log(data);
       if (!data || data?.length === 0) {
         return;
       }
@@ -45,8 +56,6 @@ export const AuthContextProvider = ({ children }: AuthProviderProps) => {
     refetch()
   };
 
-  
-  
   const contextValue = {
     isLoggedIn: userIsLoggedIn,
     login: mutation.mutate,

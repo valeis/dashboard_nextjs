@@ -1,7 +1,6 @@
 import axios, { AxiosError, AxiosResponse } from "axios";
-import { response } from "express";
 
-const baseURL = process.env.REACT_APP_BASE_URL;
+const baseURL = process.env.NEXT_PUBLIC_REACT_APP_BASE_URL;
 
 const axiosInstance = axios.create({
   baseURL: baseURL,

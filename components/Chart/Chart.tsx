@@ -1,8 +1,9 @@
 import React from "react";
-import "./Chart.css";
 import {YAxis, XAxis, CartesianGrid, Tooltip, ResponsiveContainer, AreaChart, Area,} from "recharts";
 import postsRequest from "../../api/posts";
 import { useQuery } from "react-query";
+
+import "./Chart";
 
 const LineRechartComponent = () => {
   
