@@ -1,7 +1,8 @@
 import PostsPage from "@/components/PostsPage/PostsPage";
+import withAuth from "@/HOC/withAuth";
 
 const Posts=()=> {
     return (<PostsPage/>)
 }
 
-export default Posts;
+export default withAuth(Posts);

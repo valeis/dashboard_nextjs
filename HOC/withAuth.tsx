@@ -15,7 +15,9 @@ const withAuth = (Component:any) => {
       };
       getUser();
     }, []);
-    //return <Component/>;
+    return <Component />;
   };
     return AuthenticatedComponent;
 };
+
+export default withAuth;

@@ -1,4 +1,5 @@
 import PostDetails from "@/components/PostDetails/PostDetails";
+import withAuth from "@/HOC/withAuth";
 
 const PostDetail = () => {
  return(
@@ -6,4 +7,4 @@ const PostDetail = () => {
  )
 }
 
-export default PostDetail;
+export default withAuth(PostDetail);
