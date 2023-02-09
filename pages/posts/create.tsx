@@ -5,4 +5,4 @@ const CreatePost = () => {
   return <CreatePosts />;
 };
 
-export default withAuth(CreatePost);
+export default withAuth(CreatePost, false);

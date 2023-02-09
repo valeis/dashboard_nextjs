@@ -43,6 +43,7 @@ import { useRouter } from "next/router";
   
     const logoutHandler = () => {
       authCtx.logout();
+      router.push('/login');
     };
   
     const  [ activeTab, setActiveTab ] = useState(" ");

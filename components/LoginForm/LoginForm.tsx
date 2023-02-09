@@ -29,7 +29,6 @@ const LoginForm = () => {
           onFinish={ (values) => {
             authCtx.login(values);
             setLogged(authCtx.isLoggedIn);
-            {logged && router.push('dashboard') }
           }}
           controlOptions={{
             col: {

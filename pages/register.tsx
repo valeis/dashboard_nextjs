@@ -1,4 +1,5 @@
 import RegistrationForm from "@/components/RegistrationForm/RegistrationForm";
+import withAuth from "@/HOC/withAuth";
 
 const RegisterPage=()=>{
     return (
@@ -6,4 +7,4 @@ const RegisterPage=()=>{
     )
 } 
 
-export default RegisterPage;
+export default withAuth(RegisterPage, true);

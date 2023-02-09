@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import * as FaIcons from "react-icons/fa";
 import * as AiIcons from "react-icons/ai";
-import { useMutation, useQuery, useQueryClient } from "react-query";
+import { dehydrate, QueryClient, useMutation, useQuery, useQueryClient } from "react-query";
 import { Button, Table } from "ebs-design";
 
 import AuthContext from "@/store/auth-context";
@@ -13,10 +13,13 @@ import ConfirmationModal from "../ConfirmationModal/ConfirmationModal";
 
 import "./UsersTable";
 
+interface UsersPageProps {
+  users: User[]
+}
+
 const Users = () => {
   const queryClient = useQueryClient();
   const authCtx = useContext(AuthContext);
-
   const [addUser, setAddUser] = useState(false);
   const [editUser, setEditUser] = useState("");
   const [userToDelete, setUserToDelete] = useState("");
@@ -57,6 +60,7 @@ const Users = () => {
     setEditUser("");
   };
 
+
   const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
 
   const { data: users } = useQuery("users", usersRequest.get);
@@ -64,7 +68,6 @@ const Users = () => {
   const indexOfLastPost = currentPage * usersPerPage;
   const indexOfFirstPost = indexOfLastPost - usersPerPage;
   const currentUsers = users && users!.slice(indexOfFirstPost, indexOfLastPost);
-
   const columns_user = [
     {
       dataIndex: "id",
@@ -164,3 +167,5 @@ const Users = () => {
 };
 
 export default Users;
+
+

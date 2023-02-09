@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import React, { ReactNode, useEffect, useState} from "react";
 import { UseMutateFunction, useMutation, useQuery} from "react-query";
 import usersRequest from "../api/users";
@@ -25,6 +26,8 @@ export const AuthContext = React.createContext<AuthContextType>({
 
 export const AuthContextProvider = ({ children }: AuthProviderProps) => {
 
+  const router = useRouter();
+  
   const [ initialToken, setInitialToken ] = useState('');
 
   useEffect(() => {
@@ -48,6 +51,7 @@ export const AuthContextProvider = ({ children }: AuthProviderProps) => {
         return;
       }
       localStorage.setItem("token", data[0].id);
+      router.push('/dashboard');
     }
   })
 

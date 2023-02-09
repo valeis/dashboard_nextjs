@@ -1,5 +1,5 @@
 import React from "react";
-import { useQuery } from "react-query";
+import { QueryClient, useQuery } from "react-query";
 import * as AiIcons from "react-icons/io";
 import { useNavigate, useParams } from "react-router-dom";
 import { Button, Loader, Space } from "ebs-design";
@@ -9,7 +9,7 @@ import postsRequest from "@/api/posts";
 import "./PostDetails";
 
 const PostDetails = () => { 
-  const router = useRouter();
+  const router = useRouter(); 
   const { data } = useQuery(
     ["posts", router.query["id"]],
     () => postsRequest.getById(router.query.postId?.toString()),
@@ -46,4 +46,16 @@ const PostDetails = () => {
     </Loader>
   );
 };
+
+export async function getStaticProps() {
+
+  const queryClient = new QueryClient();
+  
+  return {
+    props: {
+
+    },
+  }
+}
+
 export default PostDetails;
