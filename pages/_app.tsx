@@ -8,17 +8,24 @@ import "styles/index.scss";
 export default function App({ Component, pageProps, ...appProps }: AppProps) {
   const [queryClient] = React.useState(() => new QueryClient());
 
-  const withLayout = ['/users','/posts', '/posts/[postId]/edit', '/posts/[postId]', '/posts/create', '/dashboard'].includes(appProps.router.pathname);
-  const LayoutComponent = withLayout ? LayoutDashboard : React.Fragment ;
+  const withLayout = [
+    "/users",
+    "/posts",
+    "/posts/[postId]/edit",
+    "/posts/[postId]",
+    "/posts/create",
+    "/dashboard",
+  ].includes(appProps.router.pathname);
+  const LayoutComponent = withLayout ? LayoutDashboard : React.Fragment;
 
   return (
     <QueryClientProvider client={queryClient}>
       <Hydrate state={pageProps.dehydratedState}>
-          <AuthContextProvider>
-            <LayoutComponent>
+        <AuthContextProvider>
+          <LayoutComponent>
             <Component {...pageProps} />
-            </LayoutComponent>
-          </AuthContextProvider>
+          </LayoutComponent>
+        </AuthContextProvider>
       </Hydrate>
     </QueryClientProvider>
   );

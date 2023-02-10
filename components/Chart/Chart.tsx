@@ -25,7 +25,6 @@ const LineRechartComponent = () => {
 
   const postsUser = posts ? groupBy(posts, "author") : [];
 
-  //console.log(postsUser[0]);
 
   return (
     <ResponsiveContainer width="45%" height={500} className="recharts-wrapper">

@@ -5,7 +5,12 @@ import usersRequest from "@/api/users";
 import PostDetails from "@/components/PostDetails/PostDetails";
 import withAuth from "@/HOC/withAuth";
 import postsRequest from "@/api/posts";
+import { GetStaticProps } from "next";
+import { ParsedUrlQuery } from "querystring";
 
+interface IParams extends ParsedUrlQuery{
+   postId: string;
+}
 
 const PostDetail = () => {
  return(
@@ -16,19 +21,22 @@ const PostDetail = () => {
 export async function getStaticPaths() {
    return {
      paths: [{ params: {postId: '4'} }],
-     fallback: true, 
+     fallback: 'blocking'
    }
  }
 
-export async function getStaticProps(context:any) { 
-   const postId = context.query;
+export const getStaticProps: GetStaticProps = async(context) => { 
+   const { postId } = context.params as IParams
    const queryClient = new QueryClient();
    await queryClient.prefetchQuery(["posts", postId], ()=>postsRequest.getById(postId));
    return {
       props:{
          dehydratedState: dehydrate(queryClient),
-      }
+      },
+      // revalidate: 10
    }
 }
+
+
 
 export default withAuth(PostDetail, false);

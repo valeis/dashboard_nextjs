@@ -1,6 +1,7 @@
-import { useRouter } from "next/router";
+import SSRLocalStorage from "@/utils/SSRLocalStorage";
+import { Router, useRouter } from "next/router";
 import React, { ReactNode, useEffect, useState} from "react";
-import { UseMutateFunction, useMutation, useQuery} from "react-query";
+import { useMutation, useQuery} from "react-query";
 import usersRequest from "../api/users";
 import { User } from "../types/User";
 
@@ -14,50 +15,46 @@ interface AuthContextType {
   login: (body:{email: string, password: string}) => void
   logout: () => void;
   isLoading: boolean;
+  isAuth: boolean
 }
 
 export const AuthContext = React.createContext<AuthContextType>({
-  isLoggedIn: false,
+  isLoggedIn: true,
   currentUser: {},
   login: () => {},
   logout: () => {},
   isLoading: false,
+  isAuth: false
 });
 
 export const AuthContextProvider = ({ children }: AuthProviderProps) => {
 
+  const localeStorage = SSRLocalStorage();
+
   const router = useRouter();
   
-  const [ initialToken, setInitialToken ] = useState('');
+  const initialToken = localeStorage.getItem('token');
 
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    setInitialToken(token!);
-  },[])
-
-  /* if (typeof window !== 'undefined'){
-  const initialToken = localStorage.getItem("token");
-  } */
-
-  const { data, isLoading, refetch} = useQuery(["user",initialToken], () => usersRequest.getById(initialToken!), {enabled:!!initialToken});
-
-  const userIsLoggedIn = !!data;
-
-
+  const [isAuth, setIsAuth] = useState(true);
+  
   const mutation = useMutation(usersRequest.getAuth, {
     onSuccess: (data) => {
-      console.log(data);
       if (!data || data?.length === 0) {
         return;
       }
+      setIsAuth(true);
       localStorage.setItem("token", data[0].id);
       router.push('/dashboard');
     }
   })
+  
+  const { data, isLoading, refetch} = useQuery(["user",initialToken], () => usersRequest.getById(initialToken!), {enabled:!!initialToken});
+
+  const userIsLoggedIn = !!data;
 
   const logoutHandler = () => {
     localStorage.removeItem("token");
-    refetch()
+    setIsAuth(false);
   };
 
   const contextValue = {
@@ -66,6 +63,7 @@ export const AuthContextProvider = ({ children }: AuthProviderProps) => {
     logout: logoutHandler,
     currentUser: data!,
     isLoading,
+    isAuth
   };
 
   return (

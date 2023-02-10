@@ -36,7 +36,6 @@ import {
       },
     });
   
-  
     const publishPost = async (post: CardType) => {
       let data = await postsRequest.post(post);
       return data;

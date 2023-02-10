@@ -5,14 +5,16 @@ import Link from "next/link";
 
 import AuthContext from "@/store/auth-context";
 import Card from "../Card/Card";
+import SSRLocalStorage from "@/utils/SSRLocalStorage";
 
 import './LoginForm'
 
 const LoginForm = () => {
   const [form] = useForm();
   const authCtx = useContext(AuthContext);
-  const [logged, setLogged] = useState(true);
   const router = useRouter();
+  
+  const [logged, setLogged] = useState(false);
 
   return (
     <div>
@@ -26,9 +28,9 @@ const LoginForm = () => {
             // eslint-disable-next-line no-template-curly-in-string
             required: "Câmpul ”${label}” nu poate să fie gol",
           }}
-          onFinish={ (values) => {
+          onFinish={async (values) => {
             authCtx.login(values);
-            setLogged(authCtx.isLoggedIn);
+            setLogged(!authCtx.isAuth)
           }}
           controlOptions={{
             col: {
@@ -75,7 +77,7 @@ const LoginForm = () => {
             <Button type="ghost">Register</Button>
           </Link>  
           </div>
-          {!logged && <span className="span_login">Utilizatorul dat nu a fost găsit în sistem !</span>}
+          {logged && <span className="span_login">Utilizatorul dat nu a fost găsit în sistem !</span>}
         </Form>
       </Card>
     </div>

@@ -1,12 +1,13 @@
 import { use, useContext } from "react";
 import { dehydrate, QueryClient } from "react-query";
-import { NextPage } from "next";
+import { GetStaticProps, NextPage } from "next";
 
 import withAuth from "@/HOC/withAuth";
 import Users from "@/components/UsersTable/UsersTable";
 import AuthContext from "@/store/auth-context";
 import usersRequest from "@/api/users";
 import { User } from "@/types/User";
+import { ParsedUrlQuery } from "querystring";
 
 
 interface UsersPageProps {

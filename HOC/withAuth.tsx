@@ -5,6 +5,7 @@ import AuthContext from "@/store/auth-context";
 import { User } from "@/types/User";
 import { NextComponentType, NextPage } from "next";
 import Users from "@/components/UsersTable/UsersTable";
+import { Loader } from "ebs-design";
 
 
 const withAuth = <T extends object>(Component:React.ComponentType<T>, isAuth=false,) =>{
@@ -15,14 +16,14 @@ const withAuth = <T extends object>(Component:React.ComponentType<T>, isAuth=fal
 
     useEffect(() => {
       const getUser = async () => {
-        if (!isLoggedIn && !isAuth) {
+        if (!isLoggedIn && !isAuth && !isLoading) {
           router.push("./login")
-        } else if(isLoggedIn && isAuth) {
+        } else if(isLoggedIn && isAuth && !isLoading) {
           router.push("./dashboard")
         }
       };
       getUser();
-    }, [isLoggedIn, router]);
+    }, [isLoading, isLoggedIn, router]);
     return ((isLoggedIn && !isAuth) || (!isLoggedIn && isAuth)) ? <Component {...props}/> : null;
   };
     return AuthenticatedComponent;

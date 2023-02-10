@@ -5,4 +5,4 @@ const LoginPage = () => {
   return <LoginForm />;
 };
 
-export default withAuth(LoginPage, true);
+export default LoginPage;

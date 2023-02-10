@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { QueryClient, useQuery } from "react-query";
 import * as AiIcons from "react-icons/io";
 import { useNavigate, useParams } from "react-router-dom";
@@ -7,15 +7,18 @@ import { useRouter } from 'next/router';
 import postsRequest from "@/api/posts";
 
 import "./PostDetails";
+import Image from "next/image";
+import AuthContext from "@/store/auth-context";
 
 const PostDetails = () => { 
-  const router = useRouter(); 
+  const router = useRouter();
+  const {isLoading} = useContext(AuthContext);
   const { data } = useQuery(
     ["posts", router.query["id"]],
     () => postsRequest.getById(router.query.postId?.toString()),
     { onError: () => router.push("/posts") }
   );
-
+  
   return data ? (
     <div>
       <Space justify="center">
@@ -36,8 +39,8 @@ const PostDetails = () => {
         </Space>
       </Space>
       <div className="blog-wrap">
-        <img src={data?.image} alt="cover" />
-      </div>
+        <Image src={data?.image!} alt="cover" width={550} height={420} />
+      </div> 
       <p className="blog-desc">{data?.description}</p>
     </div>
   ) : (
@@ -53,7 +56,6 @@ export async function getStaticProps() {
   
   return {
     props: {
-
     },
   }
 }

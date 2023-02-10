@@ -63,7 +63,7 @@ const Users = () => {
 
   const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
 
-  const { data: users } = useQuery("users", usersRequest.get);
+  const { data: users } = useQuery("users", usersRequest.get, {staleTime: Infinity});
 
   const indexOfLastPost = currentPage * usersPerPage;
   const indexOfFirstPost = indexOfLastPost - usersPerPage;
