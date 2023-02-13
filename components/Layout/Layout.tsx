@@ -80,7 +80,7 @@ import { useRouter } from "next/router";
           </Sidebar.BottomMenu>
         </Sidebar>
         <Layout.Content>
-          <main>{children}</main>
+          <>{children}</>
         </Layout.Content>
   
       </Layout>

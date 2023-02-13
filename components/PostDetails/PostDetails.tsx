@@ -12,13 +12,15 @@ import AuthContext from "@/store/auth-context";
 
 const PostDetails = () => { 
   const router = useRouter();
-  const {isLoading} = useContext(AuthContext);
-  const { data } = useQuery(
+
+  const { data, isFetching } = useQuery(
     ["posts", router.query["id"]],
     () => postsRequest.getById(router.query.postId?.toString()),
     { onError: () => router.push("/posts") }
   );
-  
+
+  if(isFetching) return <Loader loading/>
+
   return data ? (
     <div>
       <Space justify="center">
@@ -49,15 +51,5 @@ const PostDetails = () => {
     </Loader>
   );
 };
-
-export async function getStaticProps() {
-
-  const queryClient = new QueryClient();
-  
-  return {
-    props: {
-    },
-  }
-}
 
 export default PostDetails;

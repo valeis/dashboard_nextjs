@@ -1,20 +1,15 @@
-import React, {useContext, useState } from "react";
-import { Form, Input, Button, useForm } from "ebs-design";
-import { useRouter } from 'next/router'
+import React, { useContext } from "react";
+import { Form, Input, Button, useForm, Loader } from "ebs-design";
 import Link from "next/link";
 
 import AuthContext from "@/store/auth-context";
 import Card from "../Card/Card";
-import SSRLocalStorage from "@/utils/SSRLocalStorage";
 
 import './LoginForm'
 
 const LoginForm = () => {
   const [form] = useForm();
   const authCtx = useContext(AuthContext);
-  const router = useRouter();
-  
-  const [logged, setLogged] = useState(false);
 
   return (
     <div>
@@ -30,7 +25,6 @@ const LoginForm = () => {
           }}
           onFinish={async (values) => {
             authCtx.login(values);
-            setLogged(!authCtx.isAuth)
           }}
           controlOptions={{
             col: {
@@ -70,14 +64,14 @@ const LoginForm = () => {
 
           <div className="ebs-button">
           <Button type="primary" submit={true}>
-            Log in
+            {authCtx.mutationLoading ? <Loader loading size="small" height={10}/> : 'Log in'}
           </Button>
 
           <Link href="/register">
             <Button type="ghost">Register</Button>
           </Link>  
           </div>
-          {logged && <span className="span_login">Utilizatorul dat nu a fost găsit în sistem !</span>}
+          {!authCtx.mutationLoading && !authCtx.isAuth && form.isFieldsTouched() && <span className="span_login">Utilizatorul dat nu a fost găsit în sistem !</span>}
         </Form>
       </Card>
     </div>

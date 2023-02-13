@@ -1,8 +1,11 @@
-import LayoutDashboard from "@/components/Layout/Layout";
-import { AuthContextProvider } from "@/store/auth-context";
+import { Hydrate, QueryClient, QueryClientProvider } from "react-query";
 import type { AppProps } from "next/app";
 import React from "react";
-import { Hydrate, QueryClient, QueryClientProvider } from "react-query";
+import NextNProgress from 'nextjs-progressbar'
+
+import LayoutDashboard from "@/components/Layout/Layout";
+import { AuthContextProvider } from "@/store/auth-context";
+
 import "styles/index.scss";
 
 export default function App({ Component, pageProps, ...appProps }: AppProps) {
@@ -20,13 +23,14 @@ export default function App({ Component, pageProps, ...appProps }: AppProps) {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <Hydrate state={pageProps.dehydratedState}>
-        <AuthContextProvider>
+      <AuthContextProvider>
+        <Hydrate state={pageProps.dehydratedState}>
           <LayoutComponent>
-            <Component {...pageProps} />
+            <NextNProgress color="#3366FF" options={{ showSpinner: false}}/>
+            <Component {...pageProps} />  
           </LayoutComponent>
-        </AuthContextProvider>
-      </Hydrate>
+        </Hydrate>
+      </AuthContextProvider>
     </QueryClientProvider>
   );
 }
