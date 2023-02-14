@@ -24,7 +24,6 @@ const RouterGuard =({ children }:Props)=> {
 
     useEffect(() =>{
         authCheck(router.asPath);
-
         const hideContent = () => setAuthorized(false);
         router.events.on('routeChangeStart', hideContent);
         router.events.on('routeChangeComplete', authCheck)
@@ -32,7 +31,7 @@ const RouterGuard =({ children }:Props)=> {
             router.events.off('routeChangeStart', hideContent);
             router.events.off('routeChangeComplete', authCheck);
         }
-    }, []);
+    });
 
     function authCheck(url:string) {
         const privatePaths = ["/users", "/posts", "/posts/[postId]/edit", "/posts/[postId]", "/posts/create", "/dashboard"];
