@@ -1,11 +1,8 @@
 import { useContext, useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import { Loader } from "ebs-design";
 
 import AuthContext from "@/store/auth-context";
-import { User } from "@/types/User";
-import { NextComponentType, NextPage } from "next";
-import Users from "@/components/UsersTable/UsersTable";
-import { Loader } from "ebs-design";
 
 const withAuth = <T extends object>(
   Component: React.ComponentType<T>,

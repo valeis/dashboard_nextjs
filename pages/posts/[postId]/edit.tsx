@@ -32,4 +32,4 @@ export const getStaticProps: GetStaticProps = async(context) => {
   }
 }
 
-export default withAuth(EditPost, false);
+export default EditPost;

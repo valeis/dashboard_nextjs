@@ -95,7 +95,7 @@ const PostCard = ({
             </div>
           </b>
         </Space>
-        <Image className="card-image" src={image!} alt="Logo" width={250} height={250}/>
+        <Image className="card-image" src={image!} alt="Logo" width={250} height={200} />
         <Space justify="center">
           <div className="card-description">
             {description?.substring(0, 90)}

@@ -20,4 +20,4 @@ export const getStaticProps:GetStaticProps = async() => {
     }
  }
 
-export default withAuth(Posts, false);
+export default Posts;

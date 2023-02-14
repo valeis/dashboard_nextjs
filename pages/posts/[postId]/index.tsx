@@ -5,16 +5,21 @@ import usersRequest from "@/api/users";
 import PostDetails from "@/components/PostDetails/PostDetails";
 import withAuth from "@/HOC/withAuth";
 import postsRequest from "@/api/posts";
-import { GetStaticProps } from "next";
+import { GetStaticProps, NextPage } from "next";
 import { ParsedUrlQuery } from "querystring";
+import { Card } from "@/types/Card";
 
 interface IParams extends ParsedUrlQuery{
    postId: string;
 }
 
-const PostDetail = () => {
+interface PostsPageProps {
+   postsData: Card
+}
+
+const PostDetail: NextPage<PostsPageProps> = ({postsData}) => {
  return(
-    <PostDetails />
+    <PostDetails {...postsData}/>
  )
 };
 
@@ -28,14 +33,14 @@ export async function getStaticPaths() {
 export const getStaticProps: GetStaticProps = async(context) => { 
    const { postId } = context.params as IParams
    const queryClient = new QueryClient();
-   await queryClient.prefetchQuery(["posts", postId], ()=>postsRequest.getById(postId));
+   const postsData = await queryClient.fetchQuery(["posts", postId], ()=>postsRequest.getById(postId));
    return {
       props:{
+         postsData,
          dehydratedState: dehydrate(queryClient),
       }
    }
 }
 
 
-
-export default withAuth(PostDetail, false);
+export default PostDetail;

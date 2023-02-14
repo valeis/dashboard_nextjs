@@ -27,5 +27,5 @@ export async function getStaticProps() {
   }
 }
 
-export default withAuth(Dashboard, false);
+export default Dashboard;
 

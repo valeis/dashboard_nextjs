@@ -1,7 +1,7 @@
 import { Button, Col, Row } from "ebs-design";
 import React from "react";
 import { useQuery } from "react-query";
-import { useRouter } from 'next/router'
+import { useRouter } from "next/router";
 
 import postsRequest from "@/api/posts";
 import PostCard from "../PostCard/PostCard";
@@ -9,7 +9,7 @@ import PostCard from "../PostCard/PostCard";
 import "./PostsPage";
 
 const Posts = () => {
-    const router = useRouter();
+  const router = useRouter();
   const addPostHandler = () => {
     router.push("/posts/create");
   };
@@ -23,7 +23,10 @@ const Posts = () => {
       <Row>
         {posts &&
           posts.map((item) => (
-            <Col className="col-12 col-sm-8 col-lg-6 col-xl-4 col-xxl-3" key={item.id}>
+            <Col
+              className="col-12 col-sm-8 col-lg-6 col-xl-4 col-xxl-3"
+              key={item.id}
+            >
               <PostCard
                 id={item.id}
                 title={item.title}

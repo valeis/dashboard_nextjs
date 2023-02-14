@@ -7,11 +7,11 @@ import {
   import { ReactNode, useContext, useEffect, useReducer, useState } from "react";
   import { useLocation, useNavigate } from "react-router-dom";
   import * as BiIcons from "react-icons/bi";
+  import { useRouter } from "next/router";
   
   import AuthContext from "../../store/auth-context";
   
   import './Layout'
-import { useRouter } from "next/router";
   
   type LayoutProps = {
     children: ReactNode;

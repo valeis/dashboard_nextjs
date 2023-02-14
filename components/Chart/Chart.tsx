@@ -4,6 +4,7 @@ import postsRequest from "../../api/posts";
 import { useQuery } from "react-query";
 
 import "./Chart";
+import { Loader } from "ebs-design";
 
 const LineRechartComponent = () => {
   

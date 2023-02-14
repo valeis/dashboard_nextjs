@@ -28,5 +28,4 @@ export async function getStaticProps() {
   }
 }
 
-export default withAuth(UsersPage, false);
-//export default UsersPage
+export default UsersPage;

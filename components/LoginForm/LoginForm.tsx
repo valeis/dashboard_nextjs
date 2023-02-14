@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Form, Input, Button, useForm, Loader } from "ebs-design";
 import Link from "next/link";
 
@@ -6,10 +6,18 @@ import AuthContext from "@/store/auth-context";
 import Card from "../Card/Card";
 
 import './LoginForm'
+import { useRouter } from "next/router";
 
 const LoginForm = () => {
   const [form] = useForm();
   const authCtx = useContext(AuthContext);
+  const router = useRouter();
+  
+  useEffect(() => {
+    if (authCtx.isLoggedIn){
+      router.push('/dashboard');
+    }
+  }, [authCtx.isLoggedIn, router])
 
   return (
     <div>

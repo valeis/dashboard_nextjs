@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { Checkbox, Form, Input, Select, Button, useForm } from "ebs-design";
 import Link from "next/link";
 import { useMutation} from "react-query";
@@ -7,12 +7,20 @@ import { useRouter } from 'next/router'
 import { User } from "@/types/User";
 import usersRequest from "@/api/users";
 import Card from "../Card/Card";
+import AuthContext from "@/store/auth-context";
 
 
 import "./RegistrationForm";
 const RegistrationForm = () => {
   const [form] = useForm();
   const router = useRouter();
+  const authCtx = useContext(AuthContext);
+
+  useEffect(() => {
+    if (authCtx.isLoggedIn){
+      router.push('/dashboard');
+    }
+  }, [authCtx.isLoggedIn, router])
 
   const registerUser = async (user: User) => {
     let data = await usersRequest.post(user);

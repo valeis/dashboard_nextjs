@@ -9,15 +9,19 @@ import postsRequest from "@/api/posts";
 import "./PostDetails";
 import Image from "next/image";
 import AuthContext from "@/store/auth-context";
+import { Card } from "@/types/Card";
 
-const PostDetails = () => { 
+const PostDetails = (postsData:Card) => { 
   const router = useRouter();
-
   const { data, isFetching } = useQuery(
     ["posts", router.query["id"]],
     () => postsRequest.getById(router.query.postId?.toString()),
-    { onError: () => router.push("/posts") }
+    {initialData: postsData,
+     staleTime: 1000,
+     onError: () => router.push("/posts")
+    }
   );
+
 
   if(isFetching) return <Loader loading/>
 
