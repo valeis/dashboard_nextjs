@@ -15,8 +15,8 @@ const RouterGuard =({ children }:Props)=> {
     const router = useRouter();
     const [authorized, setAuthorized] = useState(false);
     const { isLoading, isLoggedIn } = useContext(AuthContext);
-    
     const [showChild, setShowChild] = useState(false);
+    const authCtx = useContext(AuthContext);
 
     useEffect(() => {
       setShowChild(true);
@@ -31,7 +31,7 @@ const RouterGuard =({ children }:Props)=> {
             router.events.off('routeChangeStart', hideContent);
             router.events.off('routeChangeComplete', authCheck);
         }
-    });
+    }, []);
 
     function authCheck(url:string) {
         const privatePaths = ["/users", "/posts", "/posts/[postId]/edit", "/posts/[postId]", "/posts/create", "/dashboard"];
@@ -49,8 +49,8 @@ const RouterGuard =({ children }:Props)=> {
 
     if (!showChild) {
         return null;
-      }
-      
+      }  
+    console.log(authorized, authCtx.isLoggedIn);
     if (!authorized) return <Loader loading />
     return children;
 }
