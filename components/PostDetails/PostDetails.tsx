@@ -1,31 +1,27 @@
-import React, { useContext } from "react";
-import { QueryClient, useQuery } from "react-query";
+import React from "react";
+import { useQuery } from "react-query";
 import * as AiIcons from "react-icons/io";
-import { useNavigate, useParams } from "react-router-dom";
 import { Button, Loader, Space } from "ebs-design";
 import { useRouter } from 'next/router';
 import postsRequest from "@/api/posts";
 
 import "./PostDetails";
 import Image from "next/image";
-import AuthContext from "@/store/auth-context";
-import { Card } from "@/types/Card";
 
-const PostDetails = (postsData:Card) => { 
+const PostDetails = () => { 
   const router = useRouter();
-  const { data, isFetching } = useQuery(
-    ["posts", router.query["id"]],
-    () => postsRequest.getById(router.query.postId?.toString()),
-    {initialData: postsData,
-     staleTime: 1000,
+  const postId = router.query.postId?.toString();
+
+  const { data, isFetching } = useQuery(["posts", postId], ()=>postsRequest.getById(postId),
+    {
      onError: () => router.push("/posts")
     }
   );
 
 
-  if(isFetching) return <Loader loading/>
+  //if(isFetching) return <Loader loading/>
 
-  return data ? (
+  return (
     <div>
       <Space justify="center">
         <h1>{data?.title}</h1>
@@ -49,11 +45,7 @@ const PostDetails = (postsData:Card) => {
       </div> 
       <p className="blog-desc">{data?.description}</p>
     </div>
-  ) : (
-    <Loader fade fixed height="100%" loading size="regular">
-      Loaded
-    </Loader>
-  );
+  )
 };
 
 export default PostDetails;

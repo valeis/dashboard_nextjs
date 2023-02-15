@@ -20,16 +20,21 @@ import {
   import "./CreatePosts";
   
   const CreatePosts = () => {
-
+    
     const authCtx = useContext(AuthContext);
     const [form] = useForm();
     const router = useRouter();
-  
+    const postId = router.query.postId?.toString();
+    
+    const queryClient = useQueryClient();
+    
     let postAuthor: string | undefined = ""!;
     const [ author, setAuthor ] = useState("")
+
   
-    useQuery(["posts", router.query.postId], () => postsRequest.getById(router.query.postId?.toString()), {
-      enabled: !!router.query.postId,
+    useQuery(["posts", postId], () => postsRequest.getById(postId), {
+      
+      enabled: !!postId,
       onSuccess: (data) => {
         form.setFieldsValue(data);
         setAuthor(data.author!);
@@ -59,7 +64,6 @@ import {
       },
     });
   
-    const queryClient = useQueryClient();
   
     const { mutate } = useMutation(publishPost, {
       onSuccess: (data) => {

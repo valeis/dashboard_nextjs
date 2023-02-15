@@ -1,12 +1,16 @@
-import SSRLocalStorage from "@/utils/SSRLocalStorage";
 import { Router, useRouter } from "next/router";
 import React, { ReactNode, useEffect, useState } from "react";
 import { useMutation, useQuery } from "react-query";
+import cookie from 'react-cookies'
+
 import usersRequest from "../api/users";
 import { User } from "../types/User";
+import SSRLocalStorage from "@/utils/SSRLocalStorage";
+
 
 type AuthProviderProps = {
   children: ReactNode;
+  data:User
 };
 
 interface AuthContextType {
@@ -14,7 +18,6 @@ interface AuthContextType {
   currentUser: User;
   login: (body: { email: string; password: string }) => void;
   logout: () => void;
-  isLoading: boolean;
   isAuth: boolean;
   mutationLoading: boolean,
 }
@@ -24,19 +27,18 @@ export const AuthContext = React.createContext<AuthContextType>({
   currentUser: {},
   login: () => {},
   logout: () => {},
-  isLoading: false,
   isAuth: false,
   mutationLoading: false
 });
 
-export const AuthContextProvider = ({ children }: AuthProviderProps) => {
-  const localeStorage = SSRLocalStorage();
+export const AuthContextProvider = ({ children, data }: AuthProviderProps, ) => {
 
   const router = useRouter();
 
-  const initialToken = localeStorage.getItem("token");
 
   const [isAuth, setIsAuth] = useState(false);
+
+  cookie.load('userId');
 
   const mutation = useMutation(usersRequest.getAuth, {
     onSuccess: (data) => {
@@ -45,21 +47,15 @@ export const AuthContextProvider = ({ children }: AuthProviderProps) => {
         return;
       }
       setIsAuth(true);
-      localStorage.setItem("token", data[0].id);
+      cookie.save('userId', data[0].id, {path: '/'} )
       router.push("/dashboard");
     },
   });
 
-  const { data, isLoading, refetch } = useQuery(
-    ["user", initialToken],
-    () => usersRequest.getById(initialToken!),
-    { enabled: !!initialToken }
-  );
-
-  const userIsLoggedIn = !!data;
+  const userIsLoggedIn = false;
 
   const logoutHandler = () => {
-    localStorage.removeItem("token");
+    cookie.remove('userId', {path: '/'})
     setIsAuth(false);
   };
 
@@ -67,8 +63,7 @@ export const AuthContextProvider = ({ children }: AuthProviderProps) => {
     isLoggedIn: userIsLoggedIn,
     login: mutation.mutate,
     logout: logoutHandler,
-    currentUser: data!,
-    isLoading,
+    currentUser: data,
     isAuth,
     mutationLoading: mutation.isLoading
   };

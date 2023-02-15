@@ -1,12 +1,12 @@
 import postsRequest from "@/api/posts";
+import usersRequest from "@/api/users";
 import LineRechartComponent from "@/components/Chart/Chart";
 import withAuth from "@/HOC/withAuth";
 import { User } from "@/types/User";
+import { getAuth } from "@/utils/getAuth";
+import { GetServerSideProps, GetServerSidePropsContext } from "next";
+import { redirect } from "next/dist/server/api-utils";
 import { dehydrate, QueryClient } from "react-query";
-
-interface UsersPageProps {
-  users: User[]
-}
 
 const Dashboard = () => {
   return (
@@ -17,7 +17,8 @@ const Dashboard = () => {
   );
 };
 
-export async function getStaticProps() {
+
+export const getServerSideProps:GetServerSideProps = getAuth(async()=>{
   const queryClient = new QueryClient();
   await queryClient.prefetchQuery("posts", postsRequest.get);
   return {
@@ -25,7 +26,6 @@ export async function getStaticProps() {
       dehydratedState: dehydrate(queryClient)
     },
   }
-}
+}) 
 
 export default Dashboard;
-

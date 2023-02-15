@@ -13,10 +13,6 @@ import ConfirmationModal from "../ConfirmationModal/ConfirmationModal";
 
 import "./UsersTable";
 
-interface UsersPageProps {
-  users: User[]
-}
-
 const Users = () => {
   const queryClient = useQueryClient();
   const authCtx = useContext(AuthContext);

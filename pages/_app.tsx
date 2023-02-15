@@ -5,7 +5,6 @@ import NextNProgress from "nextjs-progressbar";
 
 import LayoutDashboard from "@/components/Layout/Layout";
 import AuthContext, { AuthContextProvider } from "@/store/auth-context";
-import { RouterGuard } from "@/components/RouteGuard";
 
 import "styles/index.scss";
 import { Loader } from "ebs-design";
@@ -26,16 +25,14 @@ export default function App({ Component, pageProps, ...appProps }: AppProps) {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <AuthContextProvider>
-        <Hydrate state={pageProps.dehydratedState}>
-          <LayoutComponent>
-            <NextNProgress color="#3366FF" options={{ showSpinner: false }} />
-            <RouterGuard>
-              <Component {...pageProps} /> 
-            </RouterGuard>
-          </LayoutComponent>
-        </Hydrate>
-      </AuthContextProvider>
+        <AuthContextProvider data={pageProps.user}>
+          <Hydrate state={pageProps.dehydratedState}>
+            <LayoutComponent>
+              <NextNProgress color="#3366FF" options={{ showSpinner: false }} />
+              <Component {...pageProps} />
+            </LayoutComponent>
+          </Hydrate>
+        </AuthContextProvider>
     </QueryClientProvider>
   );
 }
