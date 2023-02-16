@@ -1,15 +1,6 @@
 {
   "users": [
     {
-      "name": "Test",
-      "surname": "Test",
-      "email": "test@gmail.com",
-      "gender": "male",
-      "password": "test123",
-      "role": "Moderator",
-      "id": 4
-    },
-    {
       "name": "Test23",
       "surname": "Test23",
       "email": "test@gmail.com",
@@ -17,15 +8,6 @@
       "password": "test123",
       "role": "Moderator",
       "id": 5
-    },
-    {
-      "name": "test234",
-      "surname": "test234",
-      "email": "test@gmail.com",
-      "gender": "male",
-      "password": "test234",
-      "role": "Moderator",
-      "id": 6
     },
     {
       "name": "skill",

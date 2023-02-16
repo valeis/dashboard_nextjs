@@ -58,10 +58,7 @@ import {
       },
       onError: () => {
         console.log("Some error occured");
-      },
-      onSettled: () => {
-        queryClient.invalidateQueries("update");
-      },
+      }
     });
   
   

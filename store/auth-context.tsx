@@ -5,8 +5,6 @@ import cookie from 'react-cookies'
 
 import usersRequest from "../api/users";
 import { User } from "../types/User";
-import SSRLocalStorage from "@/utils/SSRLocalStorage";
-
 
 type AuthProviderProps = {
   children: ReactNode;

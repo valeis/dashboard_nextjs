@@ -12,14 +12,14 @@ const PostDetails = () => {
   const router = useRouter();
   const postId = router.query.postId?.toString();
 
-  const { data, isFetching } = useQuery(["posts", postId], ()=>postsRequest.getById(postId),
+  const { data, isLoading } = useQuery(["posts", postId], ()=>postsRequest.getById(postId),
     {
      onError: () => router.push("/posts")
     }
   );
 
 
-  //if(isFetching) return <Loader loading/>
+  if(isLoading) return <Loader loading/>
 
   return (
     <div>

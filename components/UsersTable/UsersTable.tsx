@@ -45,10 +45,7 @@ const Users = () => {
     },
     onError: () => {
       console.log("Some error occured");
-    },
-    onSettled: () => {
-      queryClient.invalidateQueries("create");
-    },
+    }
   });
 
   const submitFormHandler = () => {

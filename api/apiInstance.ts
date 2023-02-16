@@ -7,17 +7,17 @@ const axiosInstance = axios.create({
   headers: { "Content-Type": "application/json" },
 });
 
-axiosInstance.interceptors.response.use(
-  function (response: AxiosResponse) {
-    return response;
-  },
+// axiosInstance.interceptors.response.use(
+//   function (response: AxiosResponse) {
+//     return response;
+//   },
   
-  function (error: AxiosError) {
-    if (error.response!.status === 404 && error.config!.url!.includes('/users/')){
-        localStorage.removeItem("token");
-    }
-    return Promise.reject(error);
-  }
-);
+//   function (error: AxiosError) {
+//     if (error.response!.status === 404 && error.config!.url!.includes('/users/')){
+//         localStorage.removeItem("token");
+//     }
+//     return Promise.reject(error);
+//   }
+// );
 
 export default axiosInstance;
