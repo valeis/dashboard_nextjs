@@ -2,24 +2,29 @@ import usersRequest from "@/api/users";
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
 import { QueryClient } from "react-query";
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 25 * (60 * 1000) ,
+      cacheTime: 30 * (60 * 1000),
+    }
+  }
+});
 
-export const getAuth =
-  (
-    fn?: (context?: GetServerSidePropsContext) => Promise<any>
-  ): GetServerSideProps =>
+export const getAuth =(fn?: (context?: GetServerSidePropsContext) => Promise<any>): GetServerSideProps =>
   async (context) => {
     let userId = context.req.cookies["userId"];
     const publicPaths = ["/login", "/register"];
-
+    
     let user = null;
+
     try {
       if (userId)
-      user = await queryClient.fetchQuery(["user", userId], () =>
-        usersRequest.getById(userId!)
-      );
+        user = await queryClient.fetchQuery(["user", userId], () =>
+          usersRequest.getById(userId!)
+        );
     } catch (error) {
-       if (!!userId && !user) {
+      if (!!userId && !user) {
         context.res.setHeader("Set-Cookie", "userId=null; Max-Age=0");
         return {
           props: {},

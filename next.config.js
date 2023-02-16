@@ -1,6 +1,5 @@
-/** @type {import('next').NextConfig} */
-
 const withImages = require('next-images')
+const { redirect } = require('next/dist/server/api-utils')
 
 const nextConfig = {
   reactStrictMode: true,
@@ -10,7 +9,16 @@ const nextConfig = {
   devIndicators: {
     buildActivity: false
   },
-  withImages
+  withImages,
+  async redirects(){
+    return [
+      {
+        source: '/',
+        destination: '/dashboard',
+        permanent: false
+      }
+    ]
+  }
 }
 
 module.exports = nextConfig
