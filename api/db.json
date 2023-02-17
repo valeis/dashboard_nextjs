@@ -1,15 +1,6 @@
 {
   "users": [
     {
-      "name": "Test23",
-      "surname": "Test23",
-      "email": "test@gmail.com",
-      "gender": "male",
-      "password": "test123",
-      "role": "Moderator",
-      "id": 5
-    },
-    {
       "name": "skill",
       "surname": "skill",
       "email": "skill123@gmail.com",
@@ -107,15 +98,6 @@
       "password": "kali123",
       "role": "Moderator",
       "id": 32
-    },
-    {
-      "name": "panda",
-      "surname": "panda",
-      "email": "panda@gmail.com",
-      "gender": "male",
-      "password": "panda123",
-      "role": "Moderator",
-      "id": 33
     }
   ],
   "posts": [

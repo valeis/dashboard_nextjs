@@ -16,40 +16,21 @@ export const getAuth =(fn?: (context?: GetServerSidePropsContext) => Promise<any
     let userId = context.req.cookies["userId"];
     const publicPaths = ["/login", "/register"];
     
+    const includesPublicPaths = publicPaths.includes(context.resolvedUrl);
     let user = null;
 
     try {
-      if (userId)
-        user = await queryClient.fetchQuery(["user", userId], () =>
-          usersRequest.getById(userId!)
-        );
+      if (!userId) await Promise.reject();
+      user = await queryClient.fetchQuery(["user", userId], () =>
+        usersRequest.getById(userId!)
+      );
     } catch (error) {
-      if (!!userId && !user) {
-        context.res.setHeader("Set-Cookie", "userId=null; Max-Age=0");
-        return {
-          props: {},
-          redirect: {
-            destination: "/login",
-          },
-        };
-      }
+      context.res.setHeader("Set-Cookie", "userId=null; Max-Age=0");
+      return {
+        props: {},
+        ...(!includesPublicPaths && { redirect: { destination: "/login" } }),
+      };
     }
-
-    if (!!userId && publicPaths.includes(context.resolvedUrl)) {
-      return {
-        props: {},
-        redirect: {
-          destination: "/dashboard",
-        },
-      };
-    } else if (!userId && !publicPaths.includes(context.resolvedUrl)) {
-      return {
-        props: {},
-        redirect: {
-          destination: "/login",
-        },
-      };
-    } 
 
     const data = await fn?.(context);
 
@@ -58,5 +39,6 @@ export const getAuth =(fn?: (context?: GetServerSidePropsContext) => Promise<any
         ...data?.props,
         user,
       },
+      ...(includesPublicPaths && { redirect: { destination: "/dashboard" } }),
     };
   };
