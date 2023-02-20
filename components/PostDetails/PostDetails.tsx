@@ -11,6 +11,7 @@ import Image from "next/image";
 const PostDetails = () => { 
   const router = useRouter();
   const postId = router.query.postId?.toString();
+  const parse = require('html-react-parser');
 
   const { data, isLoading } = useQuery(["posts", postId], ()=>postsRequest.getById(postId),
     {
@@ -43,7 +44,7 @@ const PostDetails = () => {
       <div className="blog-wrap">
         <Image src={data?.image!} alt="cover" width={550} height={420} />
       </div> 
-      <p className="blog-desc">{data?.description}</p>
+      <p className="blog-desc">{parse(data?.description)}</p>
     </div>
   )
 };

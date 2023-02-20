@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useMutation, useQueryClient } from "react-query";
-import { useNavigate } from "react-router-dom";
 import * as BiIcons from "react-icons/bi";
 import * as MdIcons from "react-icons/md";
 import { AvatarInline, Button, Card, Space } from "ebs-design";
@@ -8,7 +7,7 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 
 import postsRequest from "@/api/posts";
-import { Card as CardType} from "@/types/Card"
+import { Card as CardType } from "@/types/Card";
 import ConfirmationModal from "../ConfirmationModal/ConfirmationModal";
 
 import "./PostCard";
@@ -23,8 +22,7 @@ const PostCard = ({
 }: CardType) => {
   const router = useRouter();
   const queryClient = useQueryClient();
-
-
+  const parse = require("html-react-parser");
   const [postToDelete, setPostToDelete] = useState("");
 
   const deletePost = async (id: string) => {
@@ -62,7 +60,7 @@ const PostCard = ({
             </div>
             <div className="header">{date}</div>
           </Space>
-          
+
           <Space
             align="end"
             direction="horizontal"
@@ -95,11 +93,17 @@ const PostCard = ({
             </div>
           </b>
         </Space>
-        <Image className="card-image" src={image!} alt="Logo" width={250} height={200} />
+        <Image
+          className="card-image"
+          src={image!}
+          alt="Logo"
+          width={250}
+          height={200}
+        />
         <Space justify="center">
           <div className="card-description">
-            {description?.substring(0, 90)}
-            <b>{description!.length > 90 ? "..." : ""}</b>
+              {parse(description?.substring(0, 50))}
+              <b>{description!.length > 50 ? "..." : ""}</b>
           </div>
         </Space>
       </Card.Body>
@@ -118,13 +122,13 @@ const PostCard = ({
           </Space>
         </Space>
         {postToDelete && (
-        <ConfirmationModal
-          setElementToDelete={setPostToDelete}
-          deleteElementHandler={deletePostHandler}
-          id={id!}
-          title={title!}
-        />
-      )}
+          <ConfirmationModal
+            setElementToDelete={setPostToDelete}
+            deleteElementHandler={deletePostHandler}
+            id={id!}
+            title={title!}
+          />
+        )}
       </Card.Footer>
     </Card>
   );
