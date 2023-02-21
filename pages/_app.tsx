@@ -10,7 +10,7 @@ import "styles/index.scss";
 import { Loader } from "ebs-design";
 
 export default function App({ Component, pageProps, ...appProps }: AppProps) {
-  const [queryClient] = React.useState(() => new QueryClient());
+  const [queryClient] = React.useState(() => new QueryClient({defaultOptions: {queries: {refetchOnWindowFocus: false}}}));
   const authCtx = useContext(AuthContext);
 
   const withLayout = [

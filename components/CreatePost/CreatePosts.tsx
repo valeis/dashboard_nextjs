@@ -13,13 +13,11 @@ import React, { useState, useContext } from "react";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import { CKEditor} from "ckeditor4-react"
 
 import { Card as CardType } from "@/types/Card";
 import Card from "../Card/Card";
-
 import "./CreatePosts";
-import { CKEditor, CKEditorEventHandler } from "ckeditor4-react";
-import Script from "next/script";
 
 const CreatePosts = () => {
   const authCtx = useContext(AuthContext);
@@ -30,17 +28,14 @@ const CreatePosts = () => {
 
   const queryClient = useQueryClient();
 
-  let postAuthor: string | undefined = ""!;
-  let description: string | undefined = ""!;
+  
   const [author, setAuthor] = useState("");
-  const [descriptionData, setDescriptionData] = useState("");
 
   useQuery(["posts", postId], () => postsRequest.getById(postId), {
     enabled: !!postId,
     onSuccess: (data) => {
       form.setFieldsValue(data);
       setAuthor(data.author!);
-      setDescriptionData(data.description!);
     },
   });
 
@@ -89,20 +84,20 @@ const CreatePosts = () => {
           required: "Câmpul ”${label}” nu poate să fie gol",
         }}
         onFinish={(values) => {
+          let postAuthor: string | undefined = ""!;
           if (router.query.postId?.toString() == null) {
             postAuthor = authCtx.currentUser?.name;
-            description = values.description.editor.getData();
           } else {
             postAuthor = author;
-            description = values.description;
           }
           const post = {
             title: values.title,
-            description: description,
+            description: values.description,
             image: values.image,
             date: values.date,
             author: postAuthor,
           };
+          console.log(post);
           if (router.query.postId?.toString() == null) {
             mutate(post);
           } else {
@@ -136,75 +131,74 @@ const CreatePosts = () => {
               required: true,
             },
           ]}
-        >
-          {(control) => {
-            return (
-              <CKEditor
-                type="classic"
-                onBeforeLoad={(c)=>{
-                  c.disableAutoInline= true
-                }}
-                initData={control.value}
-                {...control}
-                config={{
-                  removePlugins: "elementspath",
-                  height: 90,
-                  toolbar: [
-                    { name: "tools", items: ["Maximize"] },
-                    {
-                      name: "clipboard",
-                      items: [
-                        "Cut",
-                        "Copy",
-                        "Paste",
-                        "PasteText",
-                        "-",
-                        "Undo",
-                        "Redo",
-                      ],
-                    },
-                    { name: "links", items: ["Link", "Unlink"] },
-                    "/",
-                    {
-                      name: "basicstyles",
-                      items: [
-                        "Bold",
-                        "Italic",
-                        "Underline",
-                        "Strike",
-                        "-",
-                        "Subscript",
-                        "Superscript",
-                      ],
-                    },
-                    {
-                      name: "paragraph",
-                      items: [
-                        "NumberedList",
-                        "BulletedList",
-                        "-",
-                        "Outdent",
-                        "Indent",
-                        "Blockquote",
-                      ],
-                    },
-                    {
-                      name: "align",
-                      items: [
-                        "AlignLeft",
-                        "JustifyLeft",
-                        "JustifyCenter",
-                        "JustifyRight",
-                        "JustifyBlock",
-                      ],
-                    },
-                  ],
-                  extraPlugins: "colorbutton,colordialog,font",
-                  removeButtons: "",
-                }}
-              />
-            );
+          normalize={(value) => {
+            if (value && typeof value === "object") {
+              return value.editor.getData();
+            }
+            return value;
           }}
+        >
+            <CKEditor
+              onInstanceReady={({ editor }) => {
+                editor.setData(form.getFieldValue("description"));
+              }}
+              config={{
+                removePlugins: "elementspath",
+                height: 90,
+                toolbar: [
+                  { name: "tools", items: ["Maximize"] },
+                  {
+                    name: "clipboard",
+                    items: [
+                      "Cut",
+                      "Copy",
+                      "Paste",
+                      "PasteText",
+                      "-",
+                      "Undo",
+                      "Redo",
+                    ],
+                  },
+                  { name: "links", items: ["Link", "Unlink"] },
+                  "/",
+                  {
+                    name: "basicstyles",
+                    items: [
+                      "Bold",
+                      "Italic",
+                      "Underline",
+                      "Strike",
+                      "-",
+                      "Subscript",
+                      "Superscript",
+                    ],
+                  },
+                  {
+                    name: "paragraph",
+                    items: [
+                      "NumberedList",
+                      "BulletedList",
+                      "-",
+                      "Outdent",
+                      "Indent",
+                      "Blockquote",
+                    ],
+                  },
+                  {
+                    name: "align",
+                    items: [
+                      "AlignLeft",
+                      "JustifyLeft",
+                      "JustifyCenter",
+                      "JustifyRight",
+                      "JustifyBlock",
+                    ],
+                  },
+                ],
+                extraPlugins: "colorbutton,colordialog,font",
+                removeButtons: "",
+              }}
+            />
         </Form.Field>
 
         <Form.Field

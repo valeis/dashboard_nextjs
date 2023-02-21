@@ -96,10 +96,11 @@ const PostCard = ({
         <Image
           className="card-image"
           src={image!}
-          alt="Logo"
+          alt={title!}
           width={250}
           height={200}
         />
+        
         <Space justify="center">
           <div className="card-description">
               {parse(description?.substring(0, 50))}
