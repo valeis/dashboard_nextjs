@@ -8,7 +8,7 @@ import { Loader } from "ebs-design";
 
 const LineRechartComponent = () => {
   
-  const {data:posts} = useQuery("posts", postsRequest.get); 
+  const {data:posts} = useQuery("posts", postsRequest.getAll); 
   function groupBy<T, P extends keyof T>(objectArray: T[], property: P) {
     type Response = (Pick<T, P> & {count:number})[];
     return objectArray.reduce((acc: (T & {count: number})[], obj) => {

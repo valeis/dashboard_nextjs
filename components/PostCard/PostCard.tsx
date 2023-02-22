@@ -1,14 +1,17 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useMutation, useQueryClient } from "react-query";
 import * as BiIcons from "react-icons/bi";
 import * as MdIcons from "react-icons/md";
-import { AvatarInline, Button, Card, Space } from "ebs-design";
+import * as GrIcons from "react-icons/gr";
+import * as AIcons from "react-icons/ai";
+import { AvatarInline, Button, Card, Icon, Space } from "ebs-design";
 import Image from "next/image";
 import { useRouter } from "next/router";
 
 import postsRequest from "@/api/posts";
 import { Card as CardType } from "@/types/Card";
 import ConfirmationModal from "../ConfirmationModal/ConfirmationModal";
+import AuthContext from "@/store/auth-context";
 
 import "./PostCard";
 
@@ -23,6 +26,7 @@ const PostCard = ({
   const router = useRouter();
   const queryClient = useQueryClient();
   const parse = require("html-react-parser");
+  const authCtx = useContext(AuthContext);
   const [postToDelete, setPostToDelete] = useState("");
 
   const deletePost = async (id: string) => {
@@ -60,7 +64,7 @@ const PostCard = ({
             </div>
             <div className="header">{date}</div>
           </Space>
-
+          {(authCtx.currentUser?.role === "Admin" || authCtx.currentUser?.name === author) &&
           <Space
             align="end"
             direction="horizontal"
@@ -82,6 +86,7 @@ const PostCard = ({
               }}
             ></Button>
           </Space>
+          }
         </Space>
       </Card.Header>
       <Card.Body>
@@ -99,29 +104,47 @@ const PostCard = ({
           alt={title!}
           width={250}
           height={200}
+          quality={100}
         />
         
         <Space justify="center">
           <div className="card-description">
+            <Space size="small" justify="space-between">
               {parse(description?.substring(0, 50))}
-              <b>{description!.length > 50 ? "..." : ""}</b>
+              <b className="etc">{description!.length > 50 ? "..." : ""}</b>
+            </Space>
           </div>
         </Space>
       </Card.Body>
 
       <Card.Footer>
-        <Space align="center" justify="center">
-          <Space>
+        <Space align="start" justify="space-between" >
             <Button
-              type="fill"
               onClick={() => {
                 router.push(`/posts/${id}`);
               }}
+              prefix={<GrIcons.GrFormNextLink className="icon-gr"/>}
+              type="light"
+              size="medium"
+              className="card"
             >
-              Detalii
+              Read full article
             </Button>
-          </Space>
+
+            <Button
+              onClick={() => {
+                router.push(`/posts/${id}`);
+              }}
+              prefix={<AIcons.AiOutlineComment color="#3366FF"/>}
+              type="light"
+              size="medium"
+              className="card-comment"
+            >
+            </Button>
         </Space>
+
+        
+        
         {postToDelete && (
           <ConfirmationModal
             setElementToDelete={setPostToDelete}

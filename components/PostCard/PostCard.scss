@@ -57,3 +57,33 @@
   font-size: 0.8rem;
   font-weight: 500;
 }
+
+.card{
+  padding-left: 1.5rem !important;
+  font-size: medium;
+}
+
+.card .ebs-button__prefix{
+  left: 7.2rem;
+}
+
+.card .ebs-button {
+  right: 2rem;
+  position: relative;
+  font-weight: 550 !important;
+}
+
+.icon-gr path{
+  stroke: #3366FF;
+  stroke-width: 3;
+}
+
+.card-comment{
+  right: 1rem;
+}
+
+.etc {
+  position: relative;
+  top: 12px;
+  // right: 20px;
+}

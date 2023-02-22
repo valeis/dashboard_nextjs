@@ -18,10 +18,9 @@ const Posts = () => {
   
   const { data, isSuccess, hasNextPage, fetchNextPage, isFetchingNextPage } = useInfiniteQuery(
     "posts",
-    ({pageParam = 1}) => postsRequest.get(pageParam), 
+    ({pageParam = 1}) => postsRequest.getPerPage(pageParam), 
     {
       getNextPageParam: (lastPage, allPages) => {
-        console.log(lastPage, allPages)
         const nextPage = allPages.length + 1
         return lastPage.length !== 0 ? nextPage : undefined
       }
@@ -71,7 +70,7 @@ const Posts = () => {
       </Row>
 
       <div ref={observerElem}>
-        {isFetchingNextPage && hasNextPage && <Loader loading/>}
+        {isFetchingNextPage && hasNextPage ? <Loader loading/> : ''}
       </div>
     </>
   );

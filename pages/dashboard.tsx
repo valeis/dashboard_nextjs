@@ -20,7 +20,7 @@ const Dashboard = () => {
 
 export const getServerSideProps:GetServerSideProps = getAuth(async()=>{
   const queryClient = new QueryClient();
-  await queryClient.prefetchQuery("posts", postsRequest.get);
+  await queryClient.prefetchQuery("posts", postsRequest.getAll);
   return {
     props: {
       dehydratedState: dehydrate(queryClient)

@@ -126,11 +126,6 @@ const CreatePosts = () => {
         <Form.Field
           label="Descrierea postării"
           name="description"
-          rules={[
-            {
-              required: true,
-            },
-          ]}
           normalize={(value) => {
             if (value && typeof value === "object") {
               return value.editor.getData();

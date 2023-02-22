@@ -39,8 +39,7 @@ import {
   
     const authCtx = useContext(AuthContext);
     const router = useRouter();
-  
-  
+
     const logoutHandler = () => {
       authCtx.logout();
       router.push('/login');
@@ -52,7 +51,7 @@ import {
       const firstPath = "/" + router.pathname.split("/").filter(i=>i)[0]
       setActiveTab(firstPath);
     }, [router.pathname])
-  
+    
     return (
       <Layout>
         <Layout.Topbar>

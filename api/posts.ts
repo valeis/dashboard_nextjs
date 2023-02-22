@@ -8,11 +8,15 @@ const postsRequest = {
         return res.data;
     },
 
-    get: async(page:string) => {
+    getPerPage: async(page:string) => {
         const res = await axiosInstance.get<Card[]>(`/posts?_page=${page}&_limit=${LIMIT}`);
         return res.data;
     },
 
+    getAll: async() => {
+        const res = await axiosInstance.get<Card[]>(`/posts`);
+        return res.data;
+    },
 
     getById: async (id?:string) => {
         const res = await axiosInstance.get<Card>(`posts/${id}`);
