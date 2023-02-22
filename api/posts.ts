@@ -1,5 +1,6 @@
 import { Card } from "../types/Card";
 import axiosInstance from "./apiInstance";
+const LIMIT = 8;
 
 const postsRequest = {
     delete: async (id: string) => {
@@ -7,10 +8,11 @@ const postsRequest = {
         return res.data;
     },
 
-    get: async() => {
-        const res = await axiosInstance.get<Card[]>('/posts');
+    get: async(page:string) => {
+        const res = await axiosInstance.get<Card[]>(`/posts?_page=${page}&_limit=${LIMIT}`);
         return res.data;
     },
+
 
     getById: async (id?:string) => {
         const res = await axiosInstance.get<Card>(`posts/${id}`);
