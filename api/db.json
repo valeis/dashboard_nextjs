@@ -264,18 +264,65 @@
   ],
   "comments": [
     {
-      "id": 20,
-      "content": "Test",
-      "createdAt": "2023-02-24T07:49:09.977Z",
+      "id": 82,
+      "postId": "8",
+      "content": "Opana aici\n",
+      "createdAt": "2023-02-24T10:30:20.303Z",
       "username": "admin",
       "currentUser": true,
       "replies": []
     },
     {
-      "id": 95,
-      "content": "Testare\n",
-      "createdAt": "2023-02-24T08:05:46.155Z",
+      "id": 48,
+      "postId": "8",
+      "content": "Id darfd",
+      "createdAt": "2023-02-24T10:28:07.402Z",
       "username": "admin",
+      "currentUser": true,
+      "replies": []
+    },
+    {
+      "id": 44,
+      "postId": "4",
+      "content": "dvdd",
+      "createdAt": "2023-02-24T12:38:08.452Z",
+      "username": "Petru",
+      "currentUser": true,
+      "replies": []
+    },
+    {
+      "id": 31,
+      "postId": "4",
+      "content": "Mai baiete ce faci \n",
+      "createdAt": "2023-02-24T13:43:10.372Z",
+      "username": "admin",
+      "currentUser": true,
+      "replies": []
+    },
+    {
+      "id": 64,
+      "postId": "4",
+      "content": "Da da\n",
+      "createdAt": "2023-02-24T13:43:21.127Z",
+      "username": "admin",
+      "currentUser": true,
+      "replies": []
+    },
+    {
+      "id": 40,
+      "postId": "4",
+      "content": "Auuuuu\n",
+      "createdAt": "2023-02-24T13:43:27.133Z",
+      "username": "admin",
+      "currentUser": true,
+      "replies": []
+    },
+    {
+      "id": 30,
+      "postId": "4",
+      "content": "Testăm__",
+      "createdAt": "2023-02-24T14:27:35.242Z",
+      "username": "Pavel",
       "currentUser": true,
       "replies": []
     }

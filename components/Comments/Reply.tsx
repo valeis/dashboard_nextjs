@@ -5,7 +5,7 @@ import DeleteModal from "./DeleteModal/DeleteModal";
 import CommentHeader from "./CommentHeader/CommentHeader";
 import CommentFooter from "./CommentFooter";
 
-const Reply = ({ commentData, commentPostedTime, updateScore, addNewReply, editComment, deleteComment, setDeleteModalState}:any) => {
+const Reply = ({ commentData, commentPostedTime, addNewReply, editComment, deleteComment, setDeleteModalState}:any) => {
     const [replying, setReplying] = useState(false);
     const [time, setTime] = useState("");
     const [editing, setEditing] = useState(false);
@@ -26,7 +26,7 @@ const Reply = ({ commentData, commentPostedTime, updateScore, addNewReply, editC
     }
 
     const commentContent = () => {
-        const text = commentData.content.trim().split("");
+        const text = commentData.content.trim().split(" ");
         const firstWord = text.shift().split(",");
 
         return !editing ? (
@@ -57,7 +57,7 @@ const Reply = ({ commentData, commentPostedTime, updateScore, addNewReply, editC
 
     return (
         <div
-            className={`comment-container ${commentData.replies[0] !== undefined ? "gap" : " "}`}
+            className={`comment-container ${commentData.replies[0] !== undefined ? "gap" : ""}`}
         >
             <div className="comment">
             <div className="comment--body">

@@ -1,19 +1,21 @@
 import AuthContext from "@/store/auth-context";
-import { Textarea } from "ebs-design";
+import { AvatarInline, Textarea } from "ebs-design";
 import { useState, useContext } from "react";
+import { useParams } from "react-router-dom";
 
-import './AddComment';
+import "./AddComment";
 
 const AddComment = ({ buttonValue, addComments, replyingTo }: any) => {
-  const replyingToUser = replyingTo ? "Name" : "";
+  const replyingToUser = replyingTo ? `@${replyingTo},` : "";
   const [comment, setComment] = useState("");
   const authCtx = useContext(AuthContext);
+  const postId = window.location.pathname.split("/").pop();
 
   const clickHandler = () => {
     if (comment === "" || comment === " ") return;
-
     const newComment = {
       id: Math.floor(Math.random() * 100) + 5,
+      postId: postId,
       content: replyingToUser + comment,
       createdAt: new Date(),
       username: authCtx.currentUser.name,
@@ -27,13 +29,22 @@ const AddComment = ({ buttonValue, addComments, replyingTo }: any) => {
 
   return (
     <div className="add-comment">
-      <div className="profile-pic"></div>
+      <div className="profile-pic">
+        <AvatarInline
+          alt={authCtx.currentUser.name}
+          size="small"
+          status="active"
+          type="regular"
+          circle
+          
+        />
+      </div>
       <textarea
         className="comment-input"
         placeholder="Add a comment"
-        value={replyingToUser + comment}
+        value={ replyingToUser + comment}
         onChange={(e) => {
-          setComment(e.target.value.replace(replyingTo ? "User" : "", ""));
+          setComment(e.target.value.replace(replyingTo ? `@${replyingTo},` : "", ""));
         }}
       />
       <div className="send-btn-container">

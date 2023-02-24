@@ -1,5 +1,6 @@
+import AuthContext from "@/store/auth-context";
 import { commentPostedTime } from "@/utils/times";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import AddComment from "../AddComment/AddComment";
 import CommentFooter from "../CommentFooter";
 import CommentHeader from "../CommentHeader/CommentHeader";
@@ -15,6 +16,7 @@ const Comment = ({commentData, updateReplies, editComment, commentDelete, setDel
     const [editing, setEditing] = useState(false);
     const [content, setContent] = useState(commentData.content);
     const [deleting, setDeleting] = useState(false);
+    const authCtx = useContext(AuthContext);
 
     const createdAt = new Date(commentData.createdAt);
     const today = new Date();
@@ -44,72 +46,73 @@ const Comment = ({commentData, updateReplies, editComment, commentDelete, setDel
     };
 
     return (
-        <div
+      <div
         className={`comment-container ${
-            commentData.replies[0] !== undefined ? "reply-container-gap" : ""
+          commentData.replies[0] !== undefined ? "reply-container-gap" : " "
         }`}
-        >
-            <div className="comment">
-                <div className="comment--body">
-                    <CommentHeader
-                        commentData={commentData}
-                        setReplying={setReplying}
-                        setDeleting={setDeleting}
-                        setDeleteModalState={setDeleteModalState}
-                        setEditing={setEditing}
-                        time={time}
-                    />
-                    {!editing ? (
-                        <div className="comment-content">{commentData.content}</div>
-                    ):(
-                        <textarea
-                            className="content-edit-box"
-                            value={content}
-                            onChange={(e) => {
-                                setContent(e.target.value);
-                            }}
-                        />
-                    )}
-                    {editing && (
-                        <button className="update-btn" onClick={updateComment}>
-                            update
-                        </button>
-                    )}
-                </div>
-                <CommentFooter
-                    commentData={commentData}
-                    setReplying={setReplying}
-                    setDeleting={setDeleting}
-                    setDeleteModalState={setDeleteModalState}
-                    setEditing={setEditing}
-                /> {" "}
-            </div>
-            {replying && (
-                <AddComment
-                    buttonValue={"reply"}
-                    addComments={addReply}
-                    replyingTo={commentData.username}
-                />
+      >
+        <div className="comment">
+          <div className="comment--body">
+            <CommentHeader
+              commentData={commentData}
+              setReplying={setReplying}
+              setDeleting={setDeleting}
+              setDeleteModalState={setDeleteModalState}
+              setEditing={setEditing}
+              time={time}
+            />
+            {!editing ? (
+              <div className="comment-content">{commentData.content}</div>
+            ) : (
+              <textarea
+                className="content-edit-box"
+                value={content}
+                onChange={(e) => {
+                  setContent(e.target.value);
+                }}
+              />
             )}
-            
-                <ReplyContainer
-                    key={commentData.replies.id}
-                    commentData={commentData.replies}
-                    commentPostedTime={commentPostedTime}
-                    addReply={addReply}
-                    editComment={editComment}
-                    deleteComment={deleteComment}
-                    setDeleteModalState={setDeleteModalState}
-                />
-            
-            {deleting && (
-                <DeleteModal
-                    setDeleting={setDeleting}
-                    deleteComment={deleteComment}
-                    setDeleteModalState={setDeleteModalState}
-                />
+            {editing && (
+              <button className="update-btn" onClick={updateComment}>
+                update
+              </button>
             )}
+          </div>
+          <CommentFooter
+            commentData={commentData}
+            setReplying={setReplying}
+            setDeleting={setDeleting}
+            setDeleteModalState={setDeleteModalState}
+            setEditing={setEditing}
+          />{" "}
         </div>
+        {replying && commentData.username !== authCtx.currentUser.name! && (
+          <AddComment
+            buttonValue={"reply"}
+            addComments={addReply}
+            replyingTo={commentData.username}
+          />
+        )}
+        <ReplyContainer
+          key={commentData.replies.id}
+          commentData={commentData.replies}
+          commentPostedTime={commentPostedTime}
+          addReply={addReply}
+          editComment={editComment}
+          deleteComment={deleteComment}
+          setDeleteModalState={setDeleteModalState}
+        />
+
+        {deleting &&
+          (commentData.username === authCtx.currentUser.name! ||
+            authCtx.currentUser.role === "Admin") && (
+            <DeleteModal
+              setDeleting={setDeleting}
+              deleteComment={deleteComment}
+              setDeleteModalState={setDeleteModalState}
+            />
+          )}
+      </div>
     );
 };
 

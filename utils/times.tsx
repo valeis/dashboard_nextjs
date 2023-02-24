@@ -8,17 +8,17 @@ const commentPostedTime = (timeInMileSec:number) => {
     let years = (timeInMileSec / (1000*60*60*2*12)).toFixed(0);
 
     if (parseInt(sec) < 60){
-        return "seconds";
+        return " seconds";
     } else if (parseInt(min) < 60) {
-        return min + "mins";
+        return min + " mins";
     } else if (parseInt(hrs) < 24){
-        return hrs + "hrs";
+        return hrs + " hrs";
     } else if (parseInt(days) < 7){
-        return days + "days";
+        return days + " days";
     } else if (parseInt(weeks) < 4){
-        return weeks + "weeks";
+        return weeks + " weeks";
     } else if (parseInt(months) < 12){
-        return months + "months";
+        return months + " months";
     } else {
         return years+ "year";
     }
