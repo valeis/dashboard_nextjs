@@ -261,5 +261,23 @@
       "author": "Pavel",
       "id": 29
     }
+  ],
+  "comments": [
+    {
+      "id": 20,
+      "content": "Test",
+      "createdAt": "2023-02-24T07:49:09.977Z",
+      "username": "admin",
+      "currentUser": true,
+      "replies": []
+    },
+    {
+      "id": 95,
+      "content": "Testare\n",
+      "createdAt": "2023-02-24T08:05:46.155Z",
+      "username": "admin",
+      "currentUser": true,
+      "replies": []
+    }
   ]
 }

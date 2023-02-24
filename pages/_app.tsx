@@ -1,6 +1,6 @@
 import { Hydrate, QueryClient, QueryClientProvider } from "react-query";
 import type { AppProps } from "next/app";
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import NextNProgress from "nextjs-progressbar";
 import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from "react-dnd-html5-backend";
@@ -29,6 +29,20 @@ export default function App({ Component, pageProps, ...appProps }: AppProps) {
   ].includes(appProps.router.pathname);
   const LayoutComponent = withLayout ? LayoutDashboard : React.Fragment;
 
+  const [showing, setShowing] = useState(false);
+
+      useEffect(() => {
+        setShowing(true);
+      }, []);
+    
+      if (!showing) {
+        return null;
+      }
+    
+      if (typeof window === 'undefined') {
+        return <></>;}
+      else {
+
   return (
     <QueryClientProvider client={queryClient}>
       <AuthContextProvider data={pageProps.user}>
@@ -41,4 +55,5 @@ export default function App({ Component, pageProps, ...appProps }: AppProps) {
       </AuthContextProvider>
     </QueryClientProvider>
   );
+}
 }

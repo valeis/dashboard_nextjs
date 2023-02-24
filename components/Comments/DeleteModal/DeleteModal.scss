@@ -1,0 +1,72 @@
+@use "./../mixins" as *;
+
+.delete-confirmation-wrapper{
+    position: fixed;
+    z-index: 100;
+    top: 0; left: 0;
+    height: 100vh; width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .delete-container{
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        width: 90%;
+        background: #fff;
+        padding: 20px;
+        border-radius: 10px;
+
+        .title{
+            color: #395C6B;
+            font-weight: 600;
+            font-size: 1.2rem;
+        }
+
+        .confirmation-message{
+            line-height: 1.5;
+            color: #BCD3F2;
+        }
+
+        .btn-container{
+            display: flex;
+            justify-content: space-between;
+
+            button{
+                color:#fff;
+                text-transform: uppercase;
+                font-weight: 500;
+                padding: 15px 20px;
+                border: none;
+                border-radius: 10px;
+                transition: 0.3s;
+                cursor: pointer;
+
+                &:hover{
+                    opacity: 0.65;
+                }
+            }
+
+            .cancel-btn{
+                background: #BCD3F2;
+            }
+
+            .delete-btn{
+                background: #6D1A36 ;
+                color: #fff;
+            }
+        }
+        @include media-sm() {
+            width: 400px;
+            padding: 30px;
+
+            .btn-container{
+
+                button{
+                    padding: 15px 30px;
+                }
+            }
+        }
+    }
+}

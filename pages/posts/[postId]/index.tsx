@@ -4,6 +4,8 @@ import { GetServerSideProps } from "next";
 import { ParsedUrlQuery } from "querystring";
 import { getAuth } from "@/utils/getAuth";
 import postsRequest from "@/api/posts";
+import AddComment from "@/components/Comments/AddComment/AddComment";
+import CommentsModule from "@/components/Comments/CommentsModule";
 
 interface IParams extends ParsedUrlQuery{
    postId: string;
@@ -11,7 +13,10 @@ interface IParams extends ParsedUrlQuery{
 
 const PostDetail = () => {
  return(
+   <div>
     <PostDetails/>
+    <CommentsModule/>
+    </div>
  )
 };
 
