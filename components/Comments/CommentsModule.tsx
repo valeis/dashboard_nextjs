@@ -4,6 +4,10 @@ import { useMutation, useQuery, useQueryClient } from "react-query";
 import AddComment from "./AddComment/AddComment";
 import { Comment as CommentType }  from "../../types/Comment";
 import Comment from "./Comment/Comment";
+type updateReply ={
+  replies: Comment;
+  commentId: number;
+}
 
 const CommentsModule = () => {
     const queryClient = useQueryClient();
@@ -17,7 +21,7 @@ const CommentsModule = () => {
       },
     });
 
-    const deleteComment = async (id: string) => {
+    const deleteComment = async (id: number) => {
       return commentRequest.delete(id);
     }
 
@@ -34,7 +38,8 @@ const CommentsModule = () => {
       let data = await commentRequest.put(comment);
       return data; 
     }
-
+   
+    
     const update = useMutation(updateComment, {
       onSuccess: (data) => {
         queryClient.invalidateQueries(["comments"])
@@ -43,27 +48,35 @@ const CommentsModule = () => {
         console.log("Some error occured while updating a post.")
       }
     })
-    
-      useEffect(() => {
-        localStorage.setItem("comments", JSON.stringify(comments));
-        deleteModalState
-          ? document.body.classList.add("overflow--hidden")
-          : document.body.classList.remove("overflow--hidden");
-      }, [comments, deleteModalState]);
+    const updateReply = async (variables: updateReply) => {
+      let data = await commentRequest.postReply(variables);
+      return data;
+    }
+
+    const changeReply = useMutation(updateReply, {
+      onSuccess: (data) => {
+        queryClient.invalidateQueries(["comments"])
+      },
+      onError: () => {
+        console.log("Some error occured while updating a post (reply).")
+      }
+    })
+
 
       let addComments = async (newComment:any) => {
-        //let updatedComments:any = [...comments, newComment];
-        let updatedComments:any = [...comments];
-        updatedComments.push(newComment);
+        let updatedComments:any = [...comments, newComment];
         let data = await commentRequest.post(newComment);
         updateComments(updatedComments);
       };
     
-      let updateReplies = (replies:any, id:any) => {
-        let updatedComments = [...comments];
+      let updateReplies = (replies:any, commentId:any) => {
+        let updatedComments: any = [...comments];
         updatedComments.forEach((data:any) => {
-          if (data.id === id) {
+          if (data.id === commentId) {
             data.replies = [...replies];
+            replies = data.replies;
+            console.log(replies)
+            changeReply.mutate({replies, commentId});
           }
         });
         updateComments(updatedComments);
@@ -73,11 +86,11 @@ const CommentsModule = () => {
         let updatedComments = [...comments];
     
         if (type === "comment") {
-          comment.content = content;
-          update.mutate(comment);
-          updatedComments.forEach((data:any) => {
+          updatedComments.forEach((data) => {
             if (data.id === id) {
               data.content = content;
+              comment.content = content;
+              update.mutate(comment);
             }
           });
         } else if (type === "reply") {
@@ -85,6 +98,11 @@ const CommentsModule = () => {
             comment.replies.forEach((data:any) => {
               if (data.id === id) {
                 data.content = content;
+                id = comment.id;
+                comment = comment.replies;
+                let commentId = id;
+                let replies = comment.replies;
+                changeReply.mutate({replies, commentId});
               }
             });
           });
@@ -94,7 +112,7 @@ const CommentsModule = () => {
       };
     
 
-      let commentDelete = (id:any, type:any, parentComment:any) => {
+      let commentDelete = (id:number, type:string, parentComment:number) => {
         let updatedComments = [...comments];
         let updatedReplies = [];
     
@@ -102,10 +120,13 @@ const CommentsModule = () => {
           deleteCommentHandler.mutate(id);
           //updatedComments = updatedComments.filter((data:any) => data.id !== id);
         } else if (type === "reply") {
-          comments.forEach((comment:any) => {
+          comments.forEach((comment:CommentType) => {
             if (comment.id === parentComment) {
-              updatedReplies = comment.replies.filter((data:any) => data.id !== id);
+              updatedReplies = comment.replies.filter((data) => data.id !== id);
               comment.replies = updatedReplies;
+              let commentId = comment.id;
+              let replies = comment;
+               changeReply.mutate({replies, commentId});
             }
           });
         }
@@ -115,10 +136,11 @@ const CommentsModule = () => {
     
       return (
         <main className="App">
-          {comments.map((comment:any) => (
+          {comments.map((comment:CommentType) => (
             <Comment
               key={comment.id}
               commentData={comment}
+              commentInfo={comment}
               updateReplies={updateReplies}
               editComment={editComment}
               commentDelete={commentDelete}

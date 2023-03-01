@@ -56,7 +56,7 @@ import {
       <Layout>
         <Layout.Topbar>
           <Layout.Topbar.Toggler />
-          <Layout.Topbar.Title>Dashboard_EBS</Layout.Topbar.Title>
+          <Layout.Topbar.Title onClick={() => router.push('./dashboard')}>Dashboard_EBS</Layout.Topbar.Title>
           <Layout.Topbar.RightSide>
             <AvatarInline alt={authCtx.currentUser?.name} status="active" reversed />
           </Layout.Topbar.RightSide>

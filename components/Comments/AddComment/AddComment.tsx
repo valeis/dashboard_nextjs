@@ -1,12 +1,19 @@
 import AuthContext from "@/store/auth-context";
+import { Comment } from "@/types/Comment";
 import { AvatarInline, Textarea } from "ebs-design";
 import { useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 
 import "./AddComment";
 
-const AddComment = ({ buttonValue, addComments, replyingTo }: any) => {
-  const replyingToUser = replyingTo ? `@${replyingTo},` : "";
+type AddCommentProps = {
+  buttonValue: string;
+  addComments: (comment: Comment) => void;
+  replyingTo?: string;
+}
+
+const AddComment = ({ buttonValue, addComments, replyingTo }: AddCommentProps) => {
+  const replyingToUser = replyingTo ? `@${replyingTo}, ` : "";
   const [comment, setComment] = useState("");
   const authCtx = useContext(AuthContext);
   const postId = window.location.pathname.split("/").pop();
@@ -36,7 +43,6 @@ const AddComment = ({ buttonValue, addComments, replyingTo }: any) => {
           status="active"
           type="regular"
           circle
-          
         />
       </div>
       <textarea
@@ -44,7 +50,7 @@ const AddComment = ({ buttonValue, addComments, replyingTo }: any) => {
         placeholder="Add a comment"
         value={ replyingToUser + comment}
         onChange={(e) => {
-          setComment(e.target.value.replace(replyingTo ? `@${replyingTo},` : "", ""));
+          setComment(e.target.value.replace(replyingTo ? `@${replyingTo}, ` : "", ""));
         }}
       />
       <div className="send-btn-container">

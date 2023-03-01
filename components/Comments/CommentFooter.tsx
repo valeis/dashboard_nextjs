@@ -1,6 +1,7 @@
 import CommentBtn from "./CommentBtn"
+import { CommmentHeaderProps } from "./CommentHeader/CommentHeader";
 
-const CommentFooter = ({commentData, setReplying, setDeleting, setDeleteModalState, setEditing}:any) => {
+const CommentFooter = ({commentData, setReplying, setDeleting, setDeleteModalState, setEditing}:CommmentHeaderProps) => {
     return (
         <div className="comment--footer">
             <CommentBtn

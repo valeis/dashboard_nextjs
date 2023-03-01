@@ -14,8 +14,8 @@ interface IParams extends ParsedUrlQuery{
 const PostDetail = () => {
  return(
    <div>
-    <PostDetails/>
-    <CommentsModule/>
+    <div id="details"><PostDetails/></div>
+    <div id="comments"><CommentsModule/></div>
     </div>
  )
 };

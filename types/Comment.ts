@@ -1,9 +1,9 @@
 export type Comment = {
     id: number;
-    postId: number;
+    postId?: string;
     content: string;
     createdAt: Date;
     username?: string;
     currentUser: boolean;
-    replies: string[];
+    replies: Comment[];
 }

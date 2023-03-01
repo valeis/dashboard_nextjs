@@ -2,6 +2,7 @@ import AuthContext from "@/store/auth-context";
 import { useContext } from "react";
 import * as GoIcons from "react-icons/go";
 import * as MdIcons from "react-icons/md";
+import { CommmentHeaderProps } from "./CommentHeader/CommentHeader";
 
 const CommentBtn = ({
   commentData,
@@ -9,9 +10,11 @@ const CommentBtn = ({
   setDeleting,
   setDeleteModalState,
   setEditing,
-}: any) => {
+}: CommmentHeaderProps) => {
+
   const authCtx = useContext(AuthContext);
   let counter = false;
+
   const showAddComment = () => {
     counter ? setReplying(false) : setReplying(true);
     counter = true;
@@ -19,7 +22,7 @@ const CommentBtn = ({
 
   const showDeleteModal = () => {
     setDeleting(true);
-    setDeleteModalState(true);
+    setDeleteModalState?.(true);
   };
 
   const showEditComment = () => {
@@ -39,6 +42,19 @@ const CommentBtn = ({
           Reply
         </button>
       )}
+
+      {commentData.username === authCtx.currentUser.name! && (
+        <button
+          className={`edit-btn ${
+            commentData.currentUser ? " " : "display--none"
+          }`}
+          onClick={showEditComment}
+        >
+          <MdIcons.MdEdit />
+          Edit
+        </button>
+      )}
+
       {(commentData.username === authCtx.currentUser.name! ||
         authCtx.currentUser.role === "Admin") && (
         <button
@@ -51,18 +67,6 @@ const CommentBtn = ({
           Delete
         </button>
       )}
-
-      { commentData.username === authCtx.currentUser.name! &&
-        <button
-          className={`edit-btn ${
-            commentData.currentUser ? " " : "display--none"
-          }`}
-          onClick={showEditComment}
-        >
-          <MdIcons.MdEdit />
-          Edit
-        </button>
-      }
     </div>
   );
 };

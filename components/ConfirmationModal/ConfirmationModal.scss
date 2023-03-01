@@ -1,0 +1,42 @@
+.delete-confirmation-wrapper {
+  text-align: center;
+  color: #395c6b;
+  font-weight: 600;
+  font-size: 0.9rem;
+
+  .confirmation-message {
+    line-height: 1.5;
+    color: #bcd3f2;
+  }
+
+  .btn-container {
+    justify-content: space-between;
+
+    .button-modal {
+      color: #fff;
+      text-transform: uppercase;
+      font-weight: 600;
+      padding: 15px 20px;
+      border: none;
+      border-radius: 10px;
+      transition: 0.3s;
+      cursor: pointer;
+
+      &:hover {
+        opacity: 0.65;
+      }
+    }
+
+    .cancel-btn {
+      background: #bcd3f2;
+      margin-right: 27px;
+      
+    }
+
+    .delete-btn {
+      background: #6d1a36;
+      color: #fff;
+      margin-left: 27px;
+    }
+  }
+}

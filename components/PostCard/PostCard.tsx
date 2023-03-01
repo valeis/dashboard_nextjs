@@ -121,7 +121,7 @@ const PostCard = ({
         <Space align="start" justify="space-between" >
             <Button
               onClick={() => {
-                router.push(`/posts/${id}`);
+                router.push(`/posts/${id}#details`);
               }}
               prefix={<GrIcons.GrFormNextLink className="icon-gr"/>}
               type="light"
@@ -133,7 +133,7 @@ const PostCard = ({
 
             <Button
               onClick={() => {
-                router.push(`/posts/${id}`);
+                router.push(`/posts/${id}#comments`);
               }}
               prefix={<AIcons.AiOutlineComment color="#3366FF"/>}
               type="light"

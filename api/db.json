@@ -282,24 +282,6 @@
       "replies": []
     },
     {
-      "id": 44,
-      "postId": "4",
-      "content": "dvdd",
-      "createdAt": "2023-02-24T12:38:08.452Z",
-      "username": "Petru",
-      "currentUser": true,
-      "replies": []
-    },
-    {
-      "id": 31,
-      "postId": "4",
-      "content": "Mai baiete ce faci \n",
-      "createdAt": "2023-02-24T13:43:10.372Z",
-      "username": "admin",
-      "currentUser": true,
-      "replies": []
-    },
-    {
       "id": 64,
       "postId": "4",
       "content": "Da da\n",
@@ -318,11 +300,48 @@
       "replies": []
     },
     {
-      "id": 30,
+      "id": 100,
       "postId": "4",
-      "content": "Testăm__",
-      "createdAt": "2023-02-24T14:27:35.242Z",
-      "username": "Pavel",
+      "content": "fgfg-test-test",
+      "createdAt": "2023-02-27T07:34:34.530Z",
+      "username": "admin",
+      "currentUser": true,
+      "replies": [
+        {
+          "id": 18,
+          "postId": "4",
+          "content": "@admin, test-test2",
+          "createdAt": "2023-03-01T12:04:58.992Z",
+          "username": "Petru",
+          "currentUser": true,
+          "replies": []
+        },
+        {
+          "id": 39,
+          "postId": "4",
+          "content": "@admin, test-test3\n",
+          "createdAt": "2023-03-01T12:05:19.041Z",
+          "username": "Petru",
+          "currentUser": true,
+          "replies": []
+        },
+        {
+          "id": 11,
+          "postId": "4",
+          "content": "@admin, test-test4",
+          "createdAt": "2023-03-01T12:05:30.255Z",
+          "username": "Petru",
+          "currentUser": true,
+          "replies": []
+        }
+      ]
+    },
+    {
+      "id": 16,
+      "postId": "4",
+      "content": "test-test1",
+      "createdAt": "2023-03-01T12:04:25.008Z",
+      "username": "Petru",
       "currentUser": true,
       "replies": []
     }

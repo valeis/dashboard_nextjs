@@ -1,7 +1,17 @@
 import AuthContext from "@/store/auth-context";
+import { Comment } from "@/types/Comment";
 import { AvatarInline } from "ebs-design";
 import { useContext } from "react";
 import CommentBtn from "../CommentBtn";
+
+export type CommmentHeaderProps = {
+  commentData: Comment;
+  setReplying: (value:boolean) => void;
+  setDeleting: (value:boolean) => void;
+  setDeleteModalState?: (value: boolean) => void;
+  setEditing: (value:boolean) => void;
+  time?: string;
+}
 
 const CommentHeader = ({
   commentData,
@@ -10,7 +20,7 @@ const CommentHeader = ({
   setDeleteModalState,
   setEditing,
   time,
-}: any) => {
+}: CommmentHeaderProps) => {
   const authCtx = useContext(AuthContext);
 
   return (
