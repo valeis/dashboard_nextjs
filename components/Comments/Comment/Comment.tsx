@@ -6,7 +6,6 @@ import { useContext, useEffect, useState } from "react";
 import AddComment from "../AddComment/AddComment";
 import CommentFooter from "../CommentFooter";
 import CommentHeader from "../CommentHeader/CommentHeader";
-import DeleteModal from "../DeleteModal/DeleteModal";
 import ReplyContainer, { ReplyProps } from "../ReplyContainer";
 
 import "./Comment"
@@ -15,15 +14,15 @@ interface ReplyComment extends Omit<ReplyProps, 'commentData'> {
   commentData: Comment
 }
 
-const Comment = ({commentInfo, commentData, updateReplies, editComment, commentDelete, setDeleteModalState}: ReplyComment) => {
+const Comment = ({commentData, updateReplies, editComment, commentDelete, setDeleteModalState}: ReplyComment) => {
     const [replying, setReplying] = useState(false);
     const [time, setTime] =  useState("");
     const [editing, setEditing] = useState(false);
-    const [content, setContent] = useState(commentInfo!.content);
+    const [content, setContent] = useState(commentData.content);
     const [deleting, setDeleting] = useState(false);
     const authCtx = useContext(AuthContext);
 
-    const createdAt = new Date(commentInfo!.createdAt);
+    const createdAt = new Date(commentData.createdAt);
     const today = new Date();
 
     const differenceInTime = today.getTime() - createdAt.getTime();
@@ -33,29 +32,33 @@ const Comment = ({commentInfo, commentData, updateReplies, editComment, commentD
     },[differenceInTime]);
 
     const addReply = (newReply:Comment) => {
-        const replies = [...commentInfo!.replies, newReply];
-        updateReplies?.(replies, commentInfo!.id);
+        const replies = [...commentData.replies, newReply];
+        let commentId = commentData.id;
+        updateReplies?.({replies, commentId});
         setReplying(false);
     };
     
     const updateComment = () => {
-        editComment?.(content, commentInfo!.id, "comment", commentInfo!);
+        let id = commentData.id;
+        let comment = commentData;
+        let type = "comment";
+        editComment?.({content, id, type, comment});
         setEditing(false);
     };
 
     const deleteComment = (id:number, type:string) => {
         const finalType = type !== undefined ? type : "comment";
-        const finalId = id !== undefined ? id : commentInfo!.id;
-        commentDelete?.(finalId, finalType, commentInfo!.id);
+        const finalId = id !== undefined ? id : commentData.id;
+        commentDelete?.(finalId, finalType, commentData.id);
         setDeleting(false);
     };
 
     return (
-      <div className={`comment-container ${commentInfo!.replies !== undefined ? "reply-container-gap" : ""}`}>
+      <div className={`comment-container ${commentData.replies !== undefined ? "reply-container-gap" : ""}`}>
         <div className="comment">
           <div className="comment--body">
             <CommentHeader
-              commentData={commentInfo!}
+              commentData={commentData}
               setReplying={setReplying}
               setDeleting={setDeleting}
               setDeleteModalState={setDeleteModalState}
@@ -63,7 +66,7 @@ const Comment = ({commentInfo, commentData, updateReplies, editComment, commentD
               time={time}
             />
             {!editing ? (
-              <div className="comment-content">{commentInfo!.content}</div>
+              <div className="comment-content">{commentData.content}</div>
             ) : (
               <textarea
                 className="content-edit-box"
@@ -80,22 +83,21 @@ const Comment = ({commentInfo, commentData, updateReplies, editComment, commentD
             )}
           </div>
           <CommentFooter
-            commentData={commentInfo!}
+            commentData={commentData}
             setReplying={setReplying}
             setDeleting={setDeleting}
             setDeleteModalState={setDeleteModalState}
             setEditing={setEditing}
           />{" "}
         </div>
-        {replying && commentInfo!.username !== authCtx.currentUser.name! && (
+        {replying && commentData.username !== authCtx.currentUser.name! && (
           <AddComment
             buttonValue={"reply"}
             addComments={addReply}
-            replyingTo={commentInfo!.username}
+            replyingTo={commentData.username}
           />
         )}
         <ReplyContainer
-          //key={commentData!.replies.id}
           commentData={commentData!.replies}
           commentPostedTime={commentPostedTime}
           addReply={addReply}
@@ -105,11 +107,10 @@ const Comment = ({commentInfo, commentData, updateReplies, editComment, commentD
         />
 
         {deleting &&
-          (commentInfo!.username === authCtx.currentUser.name! ||
+          (commentData.username === authCtx.currentUser.name! ||
             authCtx.currentUser.role === "Admin") && (
             <ConfirmationModal
               type="comment"
-              //title={commentData.currentUser}
               setDeleting={setDeleting}
               deleteComment={deleteComment}
               setDeleteModalState={setDeleteModalState}

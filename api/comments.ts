@@ -18,7 +18,7 @@ const commentRequest = {
         const res = await axiosInstance.put(`comments/${comment!.id}`, comment);
         return res.data;
     },
-    postReply:async (variables:{replies:Comment, commentId:number} ) => {
+    postReply:async (variables:{replies:Comment[], commentId:number} ) => {
         const res = await axiosInstance.patch(`comments/${variables.commentId}`, {replies: variables.replies});
         return res.data;
     }

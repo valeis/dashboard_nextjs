@@ -1,7 +1,5 @@
 import { useState, useEffect } from "react";
-
 import AddComment from "./AddComment/AddComment";
-import DeleteModal from "./DeleteModal/DeleteModal";
 import CommentHeader from "./CommentHeader/CommentHeader";
 import CommentFooter from "./CommentFooter";
 import ConfirmationModal from "../ConfirmationModal/ConfirmationModal";
@@ -53,7 +51,10 @@ const Reply = ({commentData, commentPostedTime, addReply, editComment, deleteCom
     };
 
     const updateComment = () => {
-        editComment?.(content, commentData!.id, "reply", commentData!);
+        let id = commentData!.id;
+        let type = "reply";
+        let comment = commentData!;
+        editComment?.({content, id, type, comment});
         setEditing(false);
     };
 
@@ -100,7 +101,7 @@ const Reply = ({commentData, commentPostedTime, addReply, editComment, deleteCom
             />
         )}
 
-        {commentData!.replies.map((reply:any) =>(
+        {commentData!.replies.map((reply) =>(
             <Reply  
                 key={reply.id}
                 commentData={reply}

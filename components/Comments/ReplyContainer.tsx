@@ -1,13 +1,13 @@
 import { Comment } from "@/types/Comment";
+import { editComment, updateReply } from "./CommentsModule";
 import Reply from "./Reply";
 
 export type ReplyProps = {
     commentData?: Comment[];
-    commentInfo?: Comment;
     commentPostedTime?: (timeInMileSec:number) => string;
-    updateReplies?:(replies:(string | Comment)[], id:number) => void;
+    updateReplies?:(props:updateReply) => void;
     addReply?: (reply: Comment) => void;
-    editComment?: (content:string, id:number, type:string, commentData:Comment) => void;
+    editComment?: (props:editComment) => void;
     deleteComment?: (id: number, type:string) => void;
     commentDelete?: (id: number, type:string, parentComment:number) => void;
     setDeleteModalState?: (value:boolean) => void;
