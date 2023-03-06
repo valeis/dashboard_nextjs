@@ -4,10 +4,11 @@ import PostsPage from "@/components/PostsPage/PostsPage";
 import postsRequest from "@/api/posts";
 import { GetServerSideProps} from "next/types";
 import { getAuth } from "@/utils/getAuth";
+import React from "react";
 ;
 
 const Posts=()=> {
-    return (<PostsPage/>)
+    return (<React.StrictMode><PostsPage/></React.StrictMode>)
 }
 
 export const getServerSideProps:GetServerSideProps = getAuth(async()=>{
