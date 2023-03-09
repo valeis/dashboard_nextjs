@@ -18,8 +18,7 @@ const PostDetails = () => {
      onError: () => router.push("/posts")
     }
   );
-
-
+  
   if(isLoading) return <Loader loading/>
 
   return (

@@ -9,14 +9,6 @@ import {
   DraggableStateSnapshot,
 } from "react-beautiful-dnd";
 
-import {
-  GridContextProvider,
-  GridDropZone,
-  GridItem,
-  move,
-  swap
-} from "react-grid-dnd";
-
 import { StrictModeDroppable as Droppable } from "@/utils/StrictModeDroppable";
 
 import postsRequest from "@/api/posts";
@@ -58,7 +50,6 @@ const Posts = () => {
 
   let pageIndex = data?.pages && data!.pages.length - 2;
 
-
   useEffect(() => {
     data?.pages && updatePosts(data?.pages);
   }, [data]);
@@ -67,7 +58,7 @@ const Posts = () => {
   //   const nextState = swap(posts, sourceIndex, targetIndex);
   //   updatePosts(nextState);
   // }
-  
+
   const handleOnDragEnd = (result: any) => {
     if (!result.destination) return;
 
@@ -109,24 +100,31 @@ const Posts = () => {
   } else {
     content = (
       // <DragDropContext onDragEnd={handleOnDragEnd}>
-      //   <Droppable droppableId="posts">
-      //     {(provided) => (
-      //       <section {...provided.droppableProps} ref={provided.innerRef}>
-      //         <Row>
-      //           {isSuccess &&
-      //             data!.pages?.map((page) =>
-      //               page.map((item, index) => (
+      //   {isSuccess &&
+      //     data!.pages?.map((page, index) => (
+      //       <Droppable
+      //         droppableId={index.toString()}
+      //         key={index}
+      //         direction="horizontal"
+      //       >
+      //         {(provided, snapshot) => (
+      //           <div
+      //             {...provided.droppableProps}
+      //             ref={provided.innerRef}
+      //           >
+      //             <Row>
+      //               {page.map((item, index) => (
       //                 <Col
-      //                   className="col-12 col-sm-8 col-lg-6 col-xl-4 col-xxl-3"
+      //                   className="col-12 col-sm-8 col-lg-6 col-xl-4 col-xxl-3 col"
       //                   key={item.id}
       //                 >
       //                   <Draggable
-      //                     key={item.id}
       //                     draggableId={item.id!.toString()}
       //                     index={index}
+      //                     key={item.id}
       //                   >
       //                     {(provided) => (
-      //                       <article
+      //                       <div
       //                         ref={provided.innerRef}
       //                         {...provided.draggableProps}
       //                         {...provided.dragHandleProps}
@@ -139,117 +137,40 @@ const Posts = () => {
       //                           date={item.date}
       //                           author={item.author}
       //                         />
-      //                       </article>
+      //                       </div>
       //                     )}
       //                   </Draggable>
-      //                   {provided.placeholder}
       //                 </Col>
-      //               ))
-      //             )}
-      //         </Row>
-      //       </section>
-      //     )}
-      //   </Droppable>
+      //               ))}
+      //               {provided.placeholder}
+      //             </Row>
+      //           </div>
+      //         )}
+      //       </Droppable>
+      //     ))}
       // </DragDropContext>
 
-      <DragDropContext onDragEnd={handleOnDragEnd}>
-        
-          {isSuccess &&
-            data!.pages?.map((page, index) => (
-              <Droppable droppableId={index.toString()} key={index} direction="horizontal">
-                {(provided) => (
-                  <div {...provided.droppableProps} ref={provided.innerRef}>
-                    <Row>
-                    {page.map((item, index) => (
-                      <Draggable
-                        draggableId={item.id!.toString()}
-                        index={index}
-                        key={item.id}
-                      >
-                        {(provided) => (
-                          <Col
-                            className="col-12 col-sm-8 col-lg-6 col-xl-4 col-xxl-3 col"
-                            key={item.id}
-                          >
-                            <article
-                              ref={provided.innerRef}
-                              {...provided.draggableProps}
-                              {...provided.dragHandleProps}
-                            >
-                              <PostCard
-                                id={item.id}
-                                title={item.title}
-                                description={item.description}
-                                image={item.image}
-                                date={item.date}
-                                author={item.author}
-                              />
-                            </article>
-                          </Col>
-                        )}
-                        
-                      </Draggable>
-                    ))}
-                    {provided.placeholder}
-                    </Row>  
-                  </div>
-                )}
-              </Droppable>
-            ))}
-        
-      </DragDropContext>
-
-      // <Row>
-      //   {isSuccess && data.pages?.map(page =>
-      //     page.map((item) => (
-      //       <Col
-      //         className="col-12 col-sm-8 col-lg-6 col-xl-4 col-xxl-3"
-      //         key={item.id}
-      //       >
-      //         <PostCard
-      //           id={item.id}
-      //           title={item.title}
-      //           description={item.description}
-      //           image={item.image}
-      //           date={item.date}
-      //           author={item.author}
-      //         />
-      //       </Col>
-      //     ))
-      //   )}
-      // </Row>
-
-    //   <GridContextProvider onChange={onChange}>
-    //   <GridDropZone
-    //     id="items"
-    //     boxesPerRow={4}
-    //     rowHeight={520}
-    //     style={{ height: "520px" }}
-    //   >
-    //     {isSuccess && data.pages?.map(page =>
-    //        page.map((item) => (
-    //       <GridItem key={item.id} >
-    //         <div
-    //           style={{
-    //             width: "100%",
-    //             height: "100%"
-    //           }}
-    //         >
-    //           <PostCard
-    //              id={item.id}
-    //              title={item.title}
-    //              description={item.description}
-    //              image={item.image}
-    //              date={item.date}
-    //              author={item.author}
-    //            />
-    //         </div>
-    //       </GridItem>
-    //     )))}
-    //   </GridDropZone>
-    // </GridContextProvider>
+      <Row>
+        {isSuccess && data.pages?.map(page =>
+          page.map((item) => (
+            <Col
+              className="col-12 col-sm-8 col-lg-6 col-xl-4 col-xxl-3"
+              key={item.id}
+            >
+              <PostCard
+                id={item.id}
+                title={item.title}
+                description={item.description}
+                image={item.image}
+                date={item.date}
+                author={item.author}
+              />
+            </Col>
+          ))
+        )}
+      </Row>
     );
-                        }
+  }
   return (
     <>
       <Button className="top_button" type="primary" onClick={addPostHandler}>
